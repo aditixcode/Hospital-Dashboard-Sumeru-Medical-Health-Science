@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html class="h-full bg-[#F8FAFC]" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Sumeru Health Sciences — MyChart Patient &amp; Family Portal</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#F8FAFC",
+            "primary-container": "#0B1B3D",
+            "lumera-spruce": "#0F766E",
+            "lumera-cyan-hover": "#0284C7",
+            "lumera-border-subtle": "#E2E8F0",
+            "lumera-border-strong": "#CBD5E1",
+            "lumera-surface-card": "#FFFFFF",
+            "lumera-surface-subtle": "#F1F5F9",
+            "lumera-text-primary": "#0F172A",
+            "lumera-text-secondary": "#475569",
+            "lumera-text-muted": "#64748B",
+            "emergency-crimson": "#BE123C",
+            "status-normal-bg": "#F0FDF4",
+            "status-normal-border": "#86EFAC",
+            "status-normal-text": "#166534",
+            "status-info-bg": "#EFF6FF",
+            "status-info-border": "#93C5FD",
+            "status-info-text": "#1E40AF"
+          },
+          fontFamily: {
+            "headline-hero": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "title-panel": ["Plus Jakarta Sans", "sans-serif"],
+            "body-default": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-clinical": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+    .num-tabular {
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .surface-panel {
+      display: none;
+      animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .surface-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Hide scrollbar utility */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-default text-lumera-text-primary antialiased bg-[#F8FAFC]">
+
+<!-- TOP HEADER BAR: PATIENT-FRIENDLY & ACCESSIBLE -->
+<header class="w-full border-b border-lumera-border-subtle bg-white sticky top-0 z-50 flex-none shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <!-- Sumeru Brand Mark -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a class="flex items-center gap-3 group" href="#home" onclick="switchSurface('home'); return false;">
+        <div class="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-white shadow-xs transition-transform group-hover:scale-105">
+          <span class="material-symbols-outlined filled text-white text-xl" data-icon="local_hospital">local_hospital</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-headline-lg text-lg font-bold tracking-tight text-primary-container leading-none">Sumeru Health Sciences</span>
+          <span class="text-[11px] font-medium text-lumera-text-secondary mt-0.5 hidden sm:inline">Academic Medical Center &amp; Health System</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Quick Helpful Search -->
+    <div class="hidden md:flex flex-1 max-w-md mx-4">
+      <div class="relative w-full">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-lumera-text-muted text-lg pointer-events-none" data-icon="search">search</span>
+        <input id="portal-quick-search" class="w-full pl-10 pr-4 py-2 rounded-xl border border-lumera-border-subtle bg-slate-50/80 text-xs text-lumera-text-primary placeholder-lumera-text-muted focus:bg-white focus:border-lumera-cyan-hover focus:ring-2 focus:ring-sky-100 transition-all outline-none" placeholder="Search lab tests, doctor notes, medications, or records..." type="text"/>
+      </div>
+    </div>
+
+    <!-- User Hub & 24/7 Assistance -->
+    <div class="flex items-center gap-3">
+      <!-- 24/7 Nurse Link Button -->
+      <a class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-lumera-spruce hover:bg-emerald-100 transition-colors text-xs font-semibold" href="tel:8005557863" title="Immediate Clinical Triage">
+        <span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span>
+        <span>24/7 Nurse Line: (800) 555-SUMERU</span>
+      </a>
+
+      <!-- Link to Public Hospital Landing Page -->
+      <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-lumera-border-subtle bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-lumera-text-secondary transition-colors" href="landing.html" title="View Public Hospital Main Site">
+        <span class="material-symbols-outlined text-sm text-lumera-cyan-hover" data-icon="open_in_new">open_in_new</span>
+        <span class="hidden sm:inline">Hospital Main Site</span>
+      </a>
+
+      <!-- Patient Profile Summary -->
+      <div class="flex items-center gap-2.5 pl-2 sm:pl-3 border-l border-lumera-border-subtle">
+        <div class="w-8 h-8 rounded-full bg-slate-200 border border-lumera-border-subtle flex items-center justify-center text-xs font-bold text-lumera-text-secondary">
+          WC
+        </div>
+        <div class="hidden lg:flex flex-col text-left">
+          <span class="text-xs font-bold text-lumera-text-primary leading-tight">Wei Chen</span>
+          <span class="text-[10px] text-lumera-text-muted num-tabular font-mono">MRN: SM-8821-04</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile / Tablet Navigation Strip (6 Tabs) -->
+  <div class="lg:hidden w-full bg-slate-50 border-t border-lumera-border-subtle px-2 py-1.5 overflow-x-auto no-scrollbar">
+    <div class="flex items-center gap-1.5 min-w-max">
+      <button onclick="switchSurface('home')" data-tab="home" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-lumera-text-primary shadow-xs border border-lumera-border-subtle transition-all flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm text-lumera-cyan-hover filled" data-icon="home">home</span>
+        <span>Home</span>
+      </button>
+      <button onclick="switchSurface('records')" data-tab="records" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent">
+        <span class="material-symbols-outlined text-sm" data-icon="badge">badge</span>
+        <span>Health Records</span>
+      </button>
+      <button onclick="switchSurface('appointments')" data-tab="appointments" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent">
+        <span class="material-symbols-outlined text-sm" data-icon="event_available">event_available</span>
+        <span>Appointments</span>
+      </button>
+      <button onclick="switchSurface('labs')" data-tab="labs" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent">
+        <span class="material-symbols-outlined text-sm" data-icon="vital_signs">vital_signs</span>
+        <span>Labs &amp; Vitals</span>
+      </button>
+      <button onclick="switchSurface('billing')" data-tab="billing" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent">
+        <span class="material-symbols-outlined text-sm" data-icon="credit_card">credit_card</span>
+        <span>Billing</span>
+      </button>
+      <button onclick="switchSurface('campus')" data-tab="campus" class="mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent">
+        <span class="material-symbols-outlined text-sm" data-icon="apartment">apartment</span>
+        <span>Campus &amp; Ops</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- PORTAL CONTAINER: STICKY COMPACT SIDEBAR + SINGLE MAIN SCROLL FLOW -->
+<div class="flex-1 flex max-w-[1440px] w-full mx-auto">
+  
+  <!-- LEFT SIDEBAR: 6 CORE SECTIONS (Natural fit, zero independent scrollbar) -->
+  <aside class="w-64 lg:w-[270px] xl:w-72 bg-white border-r border-lumera-border-subtle sticky top-16 self-start flex-none py-3 px-3 hidden lg:flex flex-col space-y-2.5 max-h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar">
+    <div>
+      <p class="font-label-clinical text-[11px] uppercase font-bold text-lumera-text-muted tracking-wider px-2 mb-1.5">My Health Hub</p>
+      <nav class="space-y-0.5" id="desktop-nav" role="tablist" aria-label="Portal Navigation">
+        <!-- 1. Home (Default active) -->
+        <button role="tab" aria-selected="true" onclick="switchSurface('home')" data-tab="home" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-lumera-surface-subtle text-lumera-text-primary border border-lumera-border-subtle transition-colors group text-left">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-cyan-hover filled text-xl flex-shrink-0" data-icon="home">home</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-semibold text-lumera-text-primary leading-tight">Home</span>
+              <span class="nav-desc text-xs text-slate-700 font-medium leading-tight mt-0.5">Overview &amp; quick actions</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 2. Patient Records -->
+        <button role="tab" aria-selected="false" onclick="switchSurface('records')" data-tab="records" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-text-muted group-hover:text-lumera-cyan-hover transition-colors text-xl flex-shrink-0" data-icon="badge">badge</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight">My Health Records</span>
+              <span class="nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5">Allergies, history &amp; vaccines</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 3. Appointments & Scheduling -->
+        <button role="tab" aria-selected="false" onclick="switchSurface('appointments')" data-tab="appointments" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-text-muted group-hover:text-lumera-cyan-hover transition-colors text-xl flex-shrink-0" data-icon="event_available">event_available</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight">Appointments</span>
+              <span class="nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5">Upcoming &amp; scheduling</span>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 text-[11px] font-semibold bg-sky-100 text-sky-800 rounded-full num-tabular flex-shrink-0 ml-1.5">1 Soon</span>
+        </button>
+
+        <!-- 4. Care & Test Results -->
+        <button role="tab" aria-selected="false" onclick="switchSurface('labs')" data-tab="labs" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-text-muted group-hover:text-lumera-cyan-hover transition-colors text-xl flex-shrink-0" data-icon="vital_signs">vital_signs</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight">Care &amp; Test Results</span>
+              <span class="nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5">Labs, doctor notes &amp; vitals</span>
+            </div>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 ml-1.5" title="New lab report available"></span>
+        </button>
+
+        <!-- 5. Billing & Insurance -->
+        <button role="tab" aria-selected="false" onclick="switchSurface('billing')" data-tab="billing" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-text-muted group-hover:text-lumera-cyan-hover transition-colors text-xl flex-shrink-0" data-icon="credit_card">credit_card</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight">Billing &amp; Insurance</span>
+              <span class="nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5">Statements &amp; copay balances</span>
+            </div>
+          </div>
+          <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded num-tabular flex-shrink-0 ml-1.5">$0 Due</span>
+        </button>
+
+        <!-- 6. Hospital Services & Campus -->
+        <button role="tab" aria-selected="false" onclick="switchSurface('campus')" data-tab="campus" class="sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-lumera-text-muted group-hover:text-lumera-cyan-hover transition-colors text-xl flex-shrink-0" data-icon="apartment">apartment</span>
+            <div class="flex flex-col min-w-0">
+              <span class="nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight">Hospital &amp; Campus</span>
+              <span class="nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5">Wayfinding, visiting &amp; beds</span>
+            </div>
+          </div>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Care Team Quick Contact Card (Compact & High Readability) -->
+    <div class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/70">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-xs font-semibold text-slate-700">Primary Cardiologist</span>
+        <span class="text-[10px] uppercase font-bold text-lumera-spruce bg-emerald-100/70 px-2 py-0.5 rounded">Active Care</span>
+      </div>
+      <div class="flex items-center gap-2.5 mt-1.5">
+        <img alt="Dr. Helena Vance" class="w-8 h-8 rounded-full object-cover border border-lumera-border-subtle shadow-xs" src="assets/images/dr-helena-vance.jpg"/>
+        <div class="min-w-0">
+          <p class="text-xs font-bold text-lumera-text-primary truncate">Dr. Helena Vance, MD</p>
+          <p class="text-[11px] text-slate-600 font-medium truncate">Cardiovascular Medicine</p>
+        </div>
+      </div>
+      <button onclick="openMessageModal()" class="mt-2 w-full py-1.5 px-3 rounded-lg border border-lumera-border-subtle bg-white hover:bg-slate-100 text-xs font-semibold text-lumera-text-primary flex items-center justify-center gap-1.5 transition-colors shadow-xs">
+        <span class="material-symbols-outlined text-sm text-lumera-cyan-hover" data-icon="chat">chat</span>
+        <span>Send Secure Message</span>
+      </button>
+    </div>
+
+    <!-- Bottom Scheduling Action -->
+    <div class="pt-1">
+      <button onclick="openAppointmentModal()" class="w-full py-1.5 px-3 rounded-xl bg-primary-container text-white text-xs font-semibold hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+        <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+        <span>Schedule New Visit</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA (Single natural document scroll, optimized vertical footprint) -->
+  <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 space-y-4 sm:space-y-5">
+
+    <!-- ============================================================== -->
+    <!-- SECTION 1: HOME DASHBOARD (DEFAULT ACTIVE VIEW)                -->
+    <!-- ============================================================== -->
+    <div id="surface-home" class="surface-panel active space-y-4 sm:space-y-5" role="tabpanel" aria-labelledby="tab-home">
+      
+      <!-- Patient Welcome Banner (Balanced padding & concise scale) -->
+      <section class="bg-gradient-to-r from-primary-container to-[#132A5E] rounded-2xl p-4 sm:p-5 text-white shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-5">
+        <div class="space-y-1.5 max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/10 text-xs font-medium text-sky-200 backdrop-blur-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Patient Portal • Account Verified</span>
+          </div>
+          <h1 class="font-headline-hero text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+            Good morning, Wei.
+          </h1>
+          <p class="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-xl">
+            Welcome to your Sumeru Patient Portal. Your post-CABG recovery is progressing smoothly. You have 1 upcoming consultation scheduled this week.
+          </p>
+        </div>
+        <div class="flex flex-row md:flex-col items-center md:items-end gap-2 flex-shrink-0">
+          <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-emergency-crimson hover:bg-rose-700 text-white text-xs font-semibold shadow-xs transition-colors" href="tel:911">
+            <span class="material-symbols-outlined text-sm filled" data-icon="emergency">emergency</span>
+            <span>Emergency: Call 911</span>
+          </a>
+          <span class="text-[11px] text-slate-300">Non-urgent questions? Message below</span>
+        </div>
+      </section>
+
+      <!-- QUICK EVERYDAY ACTIONS (APPEARS ONLY ON HOME) -->
+      <section>
+        <h2 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider mb-2">Quick Everyday Actions</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
+          <!-- Action 1: Book Appointment -->
+          <button onclick="openAppointmentModal()" class="p-3 sm:p-3.5 rounded-xl bg-white border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-md transition-all group flex flex-col items-start text-left shadow-xs">
+            <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center group-hover:scale-105 transition-transform mb-1.5">
+              <span class="material-symbols-outlined text-lg" data-icon="calendar_add_on">calendar_add_on</span>
+            </div>
+            <h3 class="text-sm font-semibold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Book Visit</h3>
+            <p class="text-xs text-slate-600 mt-0.5 leading-snug">In-person or telehealth visit.</p>
+          </button>
+
+          <!-- Action 2: Message Care Team -->
+          <button onclick="openMessageModal()" class="p-3 sm:p-3.5 rounded-xl bg-white border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-md transition-all group flex flex-col items-start text-left shadow-xs">
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center group-hover:scale-105 transition-transform mb-1.5">
+              <span class="material-symbols-outlined text-lg" data-icon="forum">forum</span>
+            </div>
+            <h3 class="text-sm font-semibold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Message Doctor</h3>
+            <p class="text-xs text-slate-600 mt-0.5 leading-snug">Secure query to Dr. Vance's team.</p>
+          </button>
+
+          <!-- Action 3: View Lab Results -->
+          <button onclick="switchSurface('labs')" class="p-3 sm:p-3.5 rounded-xl bg-white border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-md transition-all group flex flex-col items-start text-left shadow-xs">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center group-hover:scale-105 transition-transform mb-1.5">
+              <span class="material-symbols-outlined text-lg" data-icon="lab_profile">lab_profile</span>
+            </div>
+            <h3 class="text-sm font-semibold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Test Results</h3>
+            <p class="text-xs text-slate-600 mt-0.5 leading-snug">Latest blood panels &amp; vitals.</p>
+          </button>
+
+          <!-- Action 4: Refill Prescriptions -->
+          <button onclick="openRefillModal()" class="p-3 sm:p-3.5 rounded-xl bg-white border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-md transition-all group flex flex-col items-start text-left shadow-xs">
+            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center group-hover:scale-105 transition-transform mb-1.5">
+              <span class="material-symbols-outlined text-lg" data-icon="prescriptions">prescriptions</span>
+            </div>
+            <h3 class="text-sm font-semibold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Refill Meds</h3>
+            <p class="text-xs text-slate-600 mt-0.5 leading-snug">Campus Rx delivery or pickup.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN SUMMARY OVERVIEW (Tightened grid & crisp padding) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-start">
+        
+        <!-- Left Summary Column (Upcoming Visit & Recent Results) -->
+        <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+          
+          <!-- Upcoming Appointment Snapshot -->
+          <div class="bg-white rounded-2xl border border-lumera-border-subtle p-4 sm:p-4.5 shadow-xs">
+            <div class="flex items-center justify-between pb-2.5 border-b border-lumera-border-subtle mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="calendar_month">calendar_month</span>
+                <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Next Confirmed Visit</h2>
+              </div>
+              <button onclick="switchSurface('appointments')" class="text-xs font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+                <span>All Visits (1)</span>
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+              </button>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3.5 items-start sm:items-center bg-slate-50/70 p-3 sm:p-3.5 rounded-xl border border-lumera-border-subtle">
+              <img alt="Dr. Helena Vance, MD" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border border-lumera-border-strong shadow-xs flex-shrink-0" src="assets/images/dr-helena-vance.jpg"/>
+              <div class="flex-1 space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-title-panel text-sm sm:text-base font-bold text-lumera-text-primary">Dr. Helena Vance, MD</h3>
+                  <span class="text-xs text-slate-600 font-medium">Chief, Cardiovascular Medicine</span>
+                </div>
+                <p class="text-xs font-semibold text-lumera-spruce flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm" data-icon="medical_services">medical_services</span>
+                  Post-CABG Recovery Consultation &amp; Echocardiogram Review
+                </p>
+                <p class="text-xs text-slate-700 flex items-center gap-1.5 pt-0.5">
+                  <span class="material-symbols-outlined text-sm text-lumera-text-muted" data-icon="schedule">schedule</span>
+                  <strong>Thursday, Oct 31, 2025 at 10:30 AM</strong>
+                </p>
+              </div>
+            </div>
+            <div class="mt-3 pt-3 border-t border-lumera-border-subtle flex flex-wrap items-center justify-between gap-2.5 text-xs">
+              <div class="flex items-center gap-2">
+                <button onclick="showToast('Appointment added to calendar.')" class="px-3.5 py-1.5 rounded-lg bg-lumera-cyan-hover hover:bg-[#0369A1] text-white font-semibold flex items-center gap-1.5 shadow-xs transition-colors">
+                  <span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+                  <span>Add to Calendar</span>
+                </button>
+                <button onclick="switchSurface('campus')" class="px-3.5 py-1.5 rounded-lg border border-lumera-border-strong bg-white hover:bg-slate-50 text-slate-700 font-semibold flex items-center gap-1.5 transition-colors">
+                  <span class="material-symbols-outlined text-sm" data-icon="directions">directions</span>
+                  <span>Suite 710 Guide</span>
+                </button>
+              </div>
+              <button onclick="openAppointmentModal()" class="text-xs font-semibold text-slate-600 hover:text-lumera-text-primary underline">
+                Reschedule
+              </button>
+            </div>
+          </div>
+
+          <!-- Recent Results Snapshot -->
+          <div class="bg-white rounded-2xl border border-lumera-border-subtle p-4 sm:p-4.5 shadow-xs">
+            <div class="flex items-center justify-between pb-2.5 border-b border-lumera-border-subtle mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-700" data-icon="lab_profile">lab_profile</span>
+                <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Recent Health Indicators</h2>
+              </div>
+              <button onclick="switchSurface('labs')" class="text-xs font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+                <span>View Full Labs</span>
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-lumera-text-primary">Cardiac Troponin-I</span>
+                  <span class="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">Optimal</span>
+                </div>
+                <p class="text-sm font-bold text-emerald-800 mt-1 num-tabular">&lt; 0.01 ng/mL</p>
+                <p class="text-xs text-slate-600 mt-0.5">Clear post-surgical heart recovery.</p>
+              </div>
+              <div class="p-3 rounded-xl border border-amber-200/80 bg-amber-50/30">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-lumera-text-primary">Serum Potassium (K+)</span>
+                  <span class="text-[10px] font-bold uppercase bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">5.4 mEq/L</span>
+                </div>
+                <p class="text-sm font-bold text-amber-900 mt-1">Slightly Elevated</p>
+                <p class="text-xs text-slate-600 mt-0.5">Supplement paused by Dr. Vance.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Summary Column (Prescriptions & Billing) -->
+        <div class="lg:col-span-5 space-y-4 sm:space-y-5">
+          
+          <!-- Current Medications Snapshot -->
+          <div class="bg-white rounded-2xl border border-lumera-border-subtle p-4 sm:p-4.5 shadow-xs">
+            <div class="flex items-center justify-between pb-2.5 border-b border-lumera-border-subtle mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lumera-spruce" data-icon="medication">medication</span>
+                <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Active Medications</h2>
+              </div>
+              <span class="text-xs font-semibold text-slate-700">2 Active</span>
+            </div>
+            <div class="space-y-2">
+              <div class="p-2.5 sm:p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 flex items-center justify-between text-xs">
+                <div>
+                  <p class="font-bold text-lumera-text-primary">Metoprolol Succinate ER 50mg</p>
+                  <p class="text-xs text-slate-600 mt-0.5">1 tablet daily in morning • 3 refills</p>
+                </div>
+                <button onclick="openRefillModal('Metoprolol Succinate ER 50mg')" class="font-semibold text-lumera-cyan-hover hover:underline">Refill</button>
+              </div>
+              <div class="p-2.5 sm:p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 flex items-center justify-between text-xs">
+                <div>
+                  <p class="font-bold text-lumera-text-primary">Atorvastatin Calcium 40mg</p>
+                  <p class="text-xs text-slate-600 mt-0.5">1 tablet at bedtime • 2 refills</p>
+                </div>
+                <button onclick="openRefillModal('Atorvastatin Calcium 40mg')" class="font-semibold text-lumera-cyan-hover hover:underline">Refill</button>
+              </div>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-lumera-border-subtle flex items-center justify-between text-xs text-slate-600">
+              <span>Campus Rx Delivery active</span>
+              <button onclick="openRefillModal()" class="font-semibold text-lumera-cyan-hover hover:underline">Manage All</button>
+            </div>
+          </div>
+
+          <!-- Billing Balance Snapshot -->
+          <div class="bg-white rounded-2xl border border-lumera-border-subtle p-4 sm:p-4.5 shadow-xs">
+            <div class="flex items-center justify-between pb-2.5 border-b border-lumera-border-subtle mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-700" data-icon="account_balance_wallet">account_balance_wallet</span>
+                <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Account Summary</h2>
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Good Standing</span>
+            </div>
+            <div class="p-3 sm:p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold text-emerald-900">Total Patient Balance Due</p>
+                <p class="text-2xl font-bold font-headline-hero text-emerald-900 mt-0.5 num-tabular">$0.00</p>
+                <p class="text-xs text-emerald-700 mt-0.5">All inpatient claims settled.</p>
+              </div>
+              <button onclick="switchSurface('billing')" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800 transition-colors shadow-xs">
+                View Claims
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 2: MY HEALTH RECORDS                                   -->
+    <!-- ============================================================== -->
+    <div id="surface-records" class="surface-panel space-y-5 sm:space-y-6" role="tabpanel" aria-labelledby="tab-records">
+      
+      <!-- Section Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-lumera-border-subtle gap-3">
+        <div>
+          <h1 class="font-headline-lg text-2xl sm:text-3xl font-bold tracking-tight text-lumera-text-primary">My Health Records</h1>
+          <p class="text-xs sm:text-sm text-lumera-text-secondary mt-0.5">Verified patient demographics, longitudinal medical history &amp; immunization registry</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="showToast('Exporting official clinical summary (PDF)...')" class="px-3 py-1.5 rounded-lg border border-lumera-border-subtle hover:bg-slate-50 text-xs font-semibold text-lumera-text-secondary flex items-center gap-1.5 transition-colors shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+            <span>Export PDF</span>
+          </button>
+          <button onclick="showToast('Verification request transmitted to Registrar.')" class="px-3 py-1.5 rounded-lg bg-lumera-cyan-hover hover:bg-[#0369A1] text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+            <span>Update Details</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Patient Demographics & Profile Summary -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 pb-4 border-b border-lumera-border-subtle">
+          <div class="w-12 h-12 rounded-2xl bg-primary-container text-white flex items-center justify-center font-bold text-lg shadow-xs">
+            WC
+          </div>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <h2 class="text-lg sm:text-xl font-bold text-lumera-text-primary">Wei Chen</h2>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">Active Inpatient Post-Op</span>
+              <span class="text-xs text-lumera-text-muted num-tabular font-mono">MRN: SM-8821-04</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-lumera-text-secondary mt-1.5">
+              <p>DOB: <strong class="text-lumera-text-primary">Aug 14, 1971</strong> (Age 54)</p>
+              <p>Legal Sex: <strong class="text-lumera-text-primary">Male</strong></p>
+              <p>Blood Type: <strong class="text-lumera-text-primary font-mono">O Positive</strong></p>
+              <p>Language: <strong class="text-lumera-text-primary">English / Mandarin</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- High-Priority Clinical Alert Banner -->
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-red-50 border border-red-200 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-red-600 text-lg mt-0.5 filled" data-icon="warning">warning</span>
+            <div>
+              <p class="text-xs font-bold text-red-900">Critical Allergy: Penicillin</p>
+              <p class="text-xs text-red-700 leading-tight mt-0.5">Severe Anaphylaxis. Avoid beta-lactam antibiotics.</p>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-amber-600 text-lg mt-0.5 filled" data-icon="elderly">elderly</span>
+            <div>
+              <p class="text-xs font-bold text-amber-900">Safety Protocol: Fall Risk</p>
+              <p class="text-xs text-amber-800 leading-tight mt-0.5">Post-surgical mobility protocol active. Morse score 35.</p>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-emerald-600 text-lg mt-0.5 filled" data-icon="verified">verified</span>
+            <div>
+              <p class="text-xs font-bold text-emerald-900">Rehabilitation Clearance</p>
+              <p class="text-xs text-emerald-800 leading-tight mt-0.5">Cleared for Phase-II outpatient cardiac walking rehab.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Conditions, Surgeries & Immunizations Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+        
+        <!-- Chronic Conditions & Diagnoses -->
+        <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs space-y-3.5">
+          <div class="flex items-center justify-between pb-3 border-b border-lumera-border-subtle">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider">Chronic Conditions &amp; Diagnoses</h3>
+            <span class="text-xs font-semibold text-lumera-text-muted">2 Recorded</span>
+          </div>
+          <ul class="space-y-2.5 text-xs">
+            <li class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 flex items-start justify-between">
+              <div>
+                <p class="font-bold text-lumera-text-primary">Ischemic Cardiomyopathy (ICD-10 I25.5)</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Onset: 2023 • Managed with beta-blockers &amp; statin therapy</p>
+              </div>
+              <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Stable</span>
+            </li>
+            <li class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 flex items-start justify-between">
+              <div>
+                <p class="font-bold text-lumera-text-primary">Essential Hypertension (ICD-10 I10)</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Onset: 2018 • Blood pressure controlled at 118/76 mmHg</p>
+              </div>
+              <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Controlled</span>
+            </li>
+          </ul>
+
+          <div class="pt-3 border-t border-lumera-border-subtle">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider mb-2">Past Surgical Procedures</h3>
+            <div class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 text-xs space-y-0.5">
+              <div class="flex justify-between font-bold text-lumera-text-primary">
+                <span>Coronary Artery Bypass Graft (CABG × 3)</span>
+                <span class="text-lumera-text-muted font-normal">Aug 24, 2025</span>
+              </div>
+              <p class="text-lumera-text-secondary text-xs">Sumeru Heart &amp; Vascular Pavilion • Lead: Dr. Helena Vance, MD</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Immunization Registry & Proxy Contacts -->
+        <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs space-y-3.5">
+          <div class="flex items-center justify-between pb-3 border-b border-lumera-border-subtle">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider">Immunization Registry</h3>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">All Up to Date</span>
+          </div>
+          <div class="border border-lumera-border-subtle rounded-xl overflow-hidden">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 border-b border-lumera-border-subtle text-[11px] font-semibold text-lumera-text-muted uppercase">
+                <tr>
+                  <th class="px-3.5 py-2">Vaccine</th>
+                  <th class="px-3.5 py-2">Date</th>
+                  <th class="px-3.5 py-2">Verification</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-lumera-border-subtle">
+                <tr>
+                  <td class="px-3.5 py-2 font-medium text-lumera-text-primary">COVID-19 Bivalent Booster</td>
+                  <td class="px-3.5 py-2 text-lumera-text-secondary num-tabular">Sep 2025</td>
+                  <td class="px-3.5 py-2"><span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Verified</span></td>
+                </tr>
+                <tr>
+                  <td class="px-3.5 py-2 font-medium text-lumera-text-primary">Influenza Quadrivalent</td>
+                  <td class="px-3.5 py-2 text-lumera-text-secondary num-tabular">Oct 2025</td>
+                  <td class="px-3.5 py-2"><span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Verified</span></td>
+                </tr>
+                <tr>
+                  <td class="px-3.5 py-2 font-medium text-lumera-text-primary">Tdap (Tetanus/Diphtheria)</td>
+                  <td class="px-3.5 py-2 text-lumera-text-secondary num-tabular">May 2022</td>
+                  <td class="px-3.5 py-2"><span class="text-[10px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">Valid to 2032</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pt-3 border-t border-lumera-border-subtle">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider mb-2">Emergency Contact &amp; Directives</h3>
+            <div class="p-3 rounded-xl border border-lumera-border-subtle bg-slate-50/50 text-xs flex justify-between items-center">
+              <div>
+                <p class="font-bold text-lumera-text-primary">Mei-Ling Chen (Spouse)</p>
+                <p class="text-lumera-text-secondary text-xs font-mono mt-0.5">+1 (555) 349-8812 • Healthcare Proxy on file</p>
+              </div>
+              <span class="text-[10px] font-semibold text-slate-700 bg-slate-200 px-2 py-0.5 rounded">Primary</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 3: APPOINTMENTS & SCHEDULING                           -->
+    <!-- ============================================================== -->
+    <div id="surface-appointments" class="surface-panel space-y-5 sm:space-y-6" role="tabpanel" aria-labelledby="tab-appointments">
+      
+      <!-- Section Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-lumera-border-subtle gap-3">
+        <div>
+          <h1 class="font-headline-lg text-2xl sm:text-3xl font-bold tracking-tight text-lumera-text-primary">Appointments &amp; Scheduling</h1>
+          <p class="text-xs sm:text-sm text-lumera-text-secondary mt-0.5">Manage confirmed consultations, past clinic summaries &amp; provider availability</p>
+        </div>
+        <button onclick="openAppointmentModal()" class="px-3.5 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-[#0369A1] text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-xs w-fit">
+          <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+          <span>Schedule New Appointment</span>
+        </button>
+      </div>
+
+      <!-- Confirmed Upcoming Appointment Hero Card -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="event_available">event_available</span>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Upcoming Consultation</h2>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-50 text-lumera-cyan-hover border border-sky-100">Confirmed</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center bg-slate-50/70 p-4 sm:p-5 rounded-xl border border-lumera-border-subtle">
+          <img alt="Dr. Helena Vance, MD" class="w-18 h-18 sm:w-20 sm:h-20 rounded-xl object-cover border border-lumera-border-strong shadow-xs flex-shrink-0" src="assets/images/dr-helena-vance.jpg"/>
+          <div class="flex-1 space-y-1">
+            <div class="flex items-center gap-2">
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Dr. Helena Vance, MD</h3>
+              <span class="text-xs text-lumera-text-muted">Chief of Cardiovascular Medicine</span>
+            </div>
+            <p class="text-xs font-semibold text-lumera-spruce flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm" data-icon="medical_services">medical_services</span>
+              Post-CABG Two-Month Recovery Review &amp; Echocardiogram Check
+            </p>
+            <div class="text-xs text-lumera-text-secondary space-y-0.5 pt-0.5">
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm text-lumera-text-muted" data-icon="schedule">schedule</span>
+                <strong>Thursday, Oct 31, 2025 at 10:30 AM (45 mins)</strong>
+              </p>
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm text-lumera-text-muted" data-icon="location_on">location_on</span>
+                Metro Pavilion • Suite 710, West Wing Outpatient Clinic
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3.5 p-3 rounded-xl bg-amber-50/70 border border-amber-200/60 text-xs text-amber-900 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-amber-600 text-base mt-0.5" data-icon="info">info</span>
+          <div>
+            <strong>Check-in Requirement:</strong> Arrive 15 minutes before 10:30 AM to complete nurse triage vitals. Bring morning blood pressure logs and all prescription bottles.
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3.5 border-t border-lumera-border-subtle flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <button onclick="showToast('Appointment synchronized to calendar.')" class="px-3.5 py-1.5 rounded-lg bg-lumera-cyan-hover hover:bg-[#0369A1] text-white font-semibold flex items-center gap-1.5 shadow-xs transition-colors">
+              <span class="material-symbols-outlined text-sm" data-icon="event">event</span>
+              <span>Add to Calendar</span>
+            </button>
+            <button onclick="switchSurface('campus')" class="px-3.5 py-1.5 rounded-lg border border-lumera-border-strong bg-white hover:bg-slate-50 text-lumera-text-secondary font-semibold flex items-center gap-1.5 transition-colors">
+              <span class="material-symbols-outlined text-sm" data-icon="directions">directions</span>
+              <span>Directions &amp; Parking</span>
+            </button>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="openAppointmentModal()" class="font-semibold text-lumera-cyan-hover hover:underline">Reschedule</button>
+            <span class="text-slate-300">|</span>
+            <button onclick="showToast('Cancellation request submitted to clinic coordinator.')" class="font-semibold text-red-600 hover:underline">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Past Appointments & Clinical Encounter History -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Past Visits &amp; Encounter Summaries</h2>
+            <p class="text-xs text-lumera-text-muted mt-0.5">Historical outpatient and postoperative hospital visits</p>
+          </div>
+          <span class="text-xs font-semibold text-lumera-text-secondary">2 Past Consultations</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 border-b border-lumera-border-subtle text-[11px] font-semibold text-lumera-text-muted uppercase">
+              <tr>
+                <th class="px-3.5 py-2.5">Date</th>
+                <th class="px-3.5 py-2.5">Provider</th>
+                <th class="px-3.5 py-2.5">Specialty / Clinic</th>
+                <th class="px-3.5 py-2.5">Encounter Type</th>
+                <th class="px-3.5 py-2.5">Outcome</th>
+                <th class="px-3.5 py-2.5 text-right">After-Visit Summary</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-lumera-border-subtle">
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary num-tabular">Sep 28, 2025</td>
+                <td class="px-3.5 py-2.5 font-medium text-lumera-text-primary">Dr. Helena Vance, MD</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary">Cardiovascular Medicine</td>
+                <td class="px-3.5 py-2.5">30-Day Post-CABG Review</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Normal Healing</span></td>
+                <td class="px-3.5 py-2.5 text-right">
+                  <button onclick="showToast('After-Visit Summary PDF downloaded.')" class="font-semibold text-lumera-cyan-hover hover:underline">Download AVS</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary num-tabular">Aug 12, 2025</td>
+                <td class="px-3.5 py-2.5 font-medium text-lumera-text-primary">Dr. Marcus Webb, MD</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary">Internal Medicine</td>
+                <td class="px-3.5 py-2.5">Pre-Operative Clearance</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800">Surgically Cleared</span></td>
+                <td class="px-3.5 py-2.5 text-right">
+                  <button onclick="showToast('Pre-op Clearance Note PDF downloaded.')" class="font-semibold text-lumera-cyan-hover hover:underline">Download AVS</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 4: CARE, LABS & CLINICAL WORKSPACE                     -->
+    <!-- ============================================================== -->
+    <div id="surface-labs" class="surface-panel space-y-5 sm:space-y-6" role="tabpanel" aria-labelledby="tab-labs">
+      
+      <!-- Section Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-lumera-border-subtle gap-3">
+        <div>
+          <h1 class="font-headline-lg text-2xl sm:text-3xl font-bold tracking-tight text-lumera-text-primary">Care &amp; Test Results</h1>
+          <p class="text-xs sm:text-sm text-lumera-text-secondary mt-0.5">Diagnostic laboratory panels, telemetry biometrics stream &amp; physician SOAP notes</p>
+        </div>
+        <button onclick="showToast('Official Diagnostic Lab Report generated (PDF).')" class="px-3.5 py-2 rounded-lg bg-lumera-cyan-hover hover:bg-[#0369A1] text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-xs w-fit">
+          <span class="material-symbols-outlined text-sm" data-icon="print">print</span>
+          <span>Print Official Lab Report</span>
+        </button>
+      </div>
+
+      <!-- Biometrics & Real-Time Vitals Stream -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-emerald-700" data-icon="vital_signs">vital_signs</span>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Current Clinical Biometrics</h2>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Remote Telemetry Active</span>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Blood Pressure</p>
+            <p class="text-xl sm:text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">118/76 <span class="text-xs font-normal text-lumera-text-muted">mmHg</span></p>
+            <p class="text-xs text-emerald-700 font-semibold mt-1">Normal Resting</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Heart Rate</p>
+            <p class="text-xl sm:text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">74 <span class="text-xs font-normal text-lumera-text-muted">bpm</span></p>
+            <p class="text-xs text-emerald-700 font-semibold mt-1">Sinus Rhythm</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Blood Oxygen</p>
+            <p class="text-xl sm:text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">98% <span class="text-xs font-normal text-lumera-text-muted">SpO2</span></p>
+            <p class="text-xs text-emerald-700 font-semibold mt-1">Optimal (&gt; 95%)</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Body Temp / RR</p>
+            <p class="text-xl sm:text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">98.6°F <span class="text-xs font-normal text-lumera-text-muted">/ 16rr</span></p>
+            <p class="text-xs text-emerald-700 font-semibold mt-1">Afebrile • Eupneic</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comprehensive Diagnostic Labs Table -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Diagnostic Laboratory Panels</h2>
+            <p class="text-xs text-lumera-text-muted mt-0.5">Certified CAP/CLIA Sumeru Core Clinical Laboratories • Specimen Date: Oct 24, 2025</p>
+          </div>
+          <span class="text-xs text-lumera-text-secondary font-medium">4 Tests Reported</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 border-b border-lumera-border-subtle text-[11px] font-semibold text-lumera-text-muted uppercase">
+              <tr>
+                <th class="px-3.5 py-2.5">Diagnostic Test</th>
+                <th class="px-3.5 py-2.5">Result</th>
+                <th class="px-3.5 py-2.5">Reference Interval</th>
+                <th class="px-3.5 py-2.5">Clinical Status</th>
+                <th class="px-3.5 py-2.5">Physician Note</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-lumera-border-subtle">
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary">Cardiac Troponin-I</td>
+                <td class="px-3.5 py-2.5 font-bold text-emerald-800 num-tabular">&lt; 0.01 ng/mL</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-muted num-tabular">&lt; 0.04 ng/mL</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Optimal / Normal</span></td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary text-xs">No ischemic stress noted. Excellent myocardial stability.</td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors bg-amber-50/30">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary">Serum Potassium (K+)</td>
+                <td class="px-3.5 py-2.5 font-bold text-amber-900 num-tabular">5.4 mEq/L</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-muted num-tabular">3.5 – 5.0 mEq/L</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-100 text-amber-800">Mild Elevation</span></td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary text-xs">Secondary to ACE inhibitor therapy. Supplementation paused.</td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary">Serum Creatinine</td>
+                <td class="px-3.5 py-2.5 font-bold text-lumera-text-primary num-tabular">0.92 mg/dL</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-muted num-tabular">0.70 – 1.30 mg/dL</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Normal</span></td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary text-xs">Renal filtration operating normally. eGFR &gt; 90 mL/min.</td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-semibold text-lumera-text-primary">Lipid Panel: LDL-C</td>
+                <td class="px-3.5 py-2.5 font-bold text-emerald-800 num-tabular">72 mg/dL</td>
+                <td class="px-3.5 py-2.5 text-lumera-text-muted num-tabular">&lt; 100 mg/dL</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Target Met</span></td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary text-xs">Atorvastatin 40mg maintained; target post-revascularization reached.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Attending Physician SOAP Clinical Note -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-3.5">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="clinical_notes">clinical_notes</span>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Attending Physician SOAP Encounter Note</h2>
+          </div>
+          <span class="text-xs text-lumera-text-muted">Encounter #ENC-4091 • Dr. Helena Vance, MD</span>
+        </div>
+        <div class="space-y-2 text-xs text-lumera-text-secondary leading-relaxed bg-slate-50/60 p-4 rounded-xl border border-lumera-border-subtle font-mono">
+          <p><strong class="text-lumera-text-primary">[Subjective]:</strong> Patient Wei Chen reports zero recurrent angina or dyspnea on modest exertion. Tolerating home cardiac rehab walking program. Reports mild fatigue in late afternoons.</p>
+          <p><strong class="text-lumera-text-primary">[Objective]:</strong> Lungs clear to auscultation bilaterally. S1/S2 heart sounds regular without murmurs or gallops. Sternal incision site clean, intact, zero erythema. BP: 118/76 mmHg, HR 74 bpm.</p>
+          <p><strong class="text-lumera-text-primary">[Assessment]:</strong> Status post 3-vessel CABG (Day 60). Excellent structural graft recovery. Mild hyperkalemia (5.4 mEq/L) likely secondary to pharmacological interaction.</p>
+          <p><strong class="text-lumera-text-primary">[Plan]:</strong> 1) Continue Metoprolol 50mg daily. 2) Hold OTC potassium. 3) In-clinic echocardiogram &amp; follow-up visit scheduled Oct 31 with Dr. Vance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 5: BILLING & INSURANCE                                 -->
+    <!-- ============================================================== -->
+    <div id="surface-billing" class="surface-panel space-y-5 sm:space-y-6" role="tabpanel" aria-labelledby="tab-billing">
+      
+      <!-- Section Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-lumera-border-subtle gap-3">
+        <div>
+          <h1 class="font-headline-lg text-2xl sm:text-3xl font-bold tracking-tight text-lumera-text-primary">Billing &amp; Insurance</h1>
+          <p class="text-xs sm:text-sm text-lumera-text-secondary mt-0.5">Outstanding balances, insurance adjudication pipeline &amp; itemized statements</p>
+        </div>
+        <button onclick="showToast('Itemized Statement (PDF) downloaded.')" class="px-3.5 py-2 rounded-lg bg-lumera-cyan-hover hover:bg-[#0369A1] text-white text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-xs w-fit">
+          <span class="material-symbols-outlined text-sm" data-icon="receipt_long">receipt_long</span>
+          <span>Download Itemized Statement (PDF)</span>
+        </button>
+      </div>
+
+      <!-- Financial Metric Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 shadow-xs">
+          <p class="text-xs font-semibold text-lumera-text-muted uppercase tracking-wider">Patient Balance Due</p>
+          <p class="text-3xl font-bold font-headline-hero text-emerald-800 mt-1 num-tabular">$0.00</p>
+          <p class="text-xs text-emerald-700 mt-1 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+            <span>Zero outstanding patient copays</span>
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 shadow-xs">
+          <p class="text-xs font-semibold text-lumera-text-muted uppercase tracking-wider">Total Claims Processed</p>
+          <p class="text-3xl font-bold font-headline-hero text-lumera-text-primary mt-1 num-tabular">$14,850.00</p>
+          <p class="text-xs text-lumera-text-secondary mt-1">100% adjudicated under BCBS PPO</p>
+        </div>
+        <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 shadow-xs">
+          <p class="text-xs font-semibold text-lumera-text-muted uppercase tracking-wider">2025 Annual Deductible</p>
+          <div class="flex items-baseline justify-between mt-1">
+            <p class="text-2xl font-bold text-lumera-text-primary num-tabular">$2,850 / $3,000</p>
+            <span class="text-xs font-bold text-lumera-spruce">95% Met</span>
+          </div>
+          <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden mt-2">
+            <div class="bg-lumera-spruce h-full rounded-full" style="width: 95%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Insurance Coverage Details -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-3.5">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="health_and_safety">health_and_safety</span>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Verified Primary Coverage</h2>
+          </div>
+          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Active Policy</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-xs">
+          <div class="p-3 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-lumera-text-muted font-medium">Insurance Carrier</p>
+            <p class="font-bold text-lumera-text-primary mt-0.5">Blue Cross Blue Shield</p>
+            <p class="text-xs text-lumera-text-secondary">PPO Select Advantage Network</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-lumera-text-muted font-medium">Policy Identifiers</p>
+            <p class="font-bold text-lumera-text-primary font-mono mt-0.5">ID: BCB-88392019</p>
+            <p class="text-xs text-lumera-text-secondary font-mono">Group: #99201 • Copay: $0</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-lumera-text-muted font-medium">Pre-Authorization Status</p>
+            <p class="font-bold text-emerald-800 mt-0.5">Approved &amp; Cleared</p>
+            <p class="text-xs text-lumera-text-secondary">Echocardiogram auth #AUTH-99120</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Itemized Claims Table -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Itemized Clinical Claims &amp; Invoices</h2>
+            <p class="text-xs text-lumera-text-muted mt-0.5">Electronic Data Interchange (EDI 835) Payer Payment Records</p>
+          </div>
+          <span class="text-xs font-semibold text-lumera-text-secondary">3 Claims Recorded</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 border-b border-lumera-border-subtle text-[11px] font-semibold text-lumera-text-muted uppercase">
+              <tr>
+                <th class="px-3.5 py-2.5">Claim ID</th>
+                <th class="px-3.5 py-2.5">Service &amp; CPT Code</th>
+                <th class="px-3.5 py-2.5">Provider</th>
+                <th class="px-3.5 py-2.5">Payer Status</th>
+                <th class="px-3.5 py-2.5">Billed</th>
+                <th class="px-3.5 py-2.5">Insurance Paid</th>
+                <th class="px-3.5 py-2.5">Your Due</th>
+                <th class="px-3.5 py-2.5 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-lumera-border-subtle">
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-mono font-medium text-lumera-text-primary">CLM-9912</td>
+                <td class="px-3.5 py-2.5">
+                  <p class="font-semibold text-lumera-text-primary">Level 4 Outpatient Consultation</p>
+                  <p class="text-xs text-lumera-text-secondary font-mono">CPT #99214</p>
+                </td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary">Dr. Helena Vance</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Settled (Paid)</span></td>
+                <td class="px-3.5 py-2.5 num-tabular">$340.00</td>
+                <td class="px-3.5 py-2.5 font-semibold text-emerald-800 num-tabular">$340.00</td>
+                <td class="px-3.5 py-2.5 font-bold text-emerald-800 num-tabular">$0.00</td>
+                <td class="px-3.5 py-2.5 text-right">
+                  <button onclick="showToast('Receipt #REC-9912 generated.')" class="font-semibold text-lumera-cyan-hover hover:underline">Receipt</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-mono font-medium text-lumera-text-primary">CLM-9913</td>
+                <td class="px-3.5 py-2.5">
+                  <p class="font-semibold text-lumera-text-primary">Comprehensive Echocardiography</p>
+                  <p class="text-xs text-lumera-text-secondary font-mono">CPT #93306</p>
+                </td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary">Dr. Helena Vance</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Settled (Paid)</span></td>
+                <td class="px-3.5 py-2.5 num-tabular">$1,280.00</td>
+                <td class="px-3.5 py-2.5 font-semibold text-emerald-800 num-tabular">$1,280.00</td>
+                <td class="px-3.5 py-2.5 font-bold text-emerald-800 num-tabular">$0.00</td>
+                <td class="px-3.5 py-2.5 text-right">
+                  <button onclick="showToast('Receipt #REC-9913 generated.')" class="font-semibold text-lumera-cyan-hover hover:underline">Receipt</button>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-3.5 py-2.5 font-mono font-medium text-lumera-text-primary">CLM-9884</td>
+                <td class="px-3.5 py-2.5">
+                  <p class="font-semibold text-lumera-text-primary">Metabolic Panel &amp; Troponin</p>
+                  <p class="text-xs text-lumera-text-secondary font-mono">CPT #80053 / #84484</p>
+                </td>
+                <td class="px-3.5 py-2.5 text-lumera-text-secondary">Sumeru Core Lab</td>
+                <td class="px-3.5 py-2.5"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800">Settled (Paid)</span></td>
+                <td class="px-3.5 py-2.5 num-tabular">$230.00</td>
+                <td class="px-3.5 py-2.5 font-semibold text-emerald-800 num-tabular">$230.00</td>
+                <td class="px-3.5 py-2.5 font-bold text-emerald-800 num-tabular">$0.00</td>
+                <td class="px-3.5 py-2.5 text-right">
+                  <button onclick="showToast('Receipt #REC-9884 generated.')" class="font-semibold text-lumera-cyan-hover hover:underline">Receipt</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- SECTION 6: HOSPITAL SERVICES & CAMPUS OPERATIONS              -->
+    <!-- ============================================================== -->
+    <div id="surface-campus" class="surface-panel space-y-5 sm:space-y-6" role="tabpanel" aria-labelledby="tab-campus">
+      
+      <!-- Section Page Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-lumera-border-subtle gap-3">
+        <div>
+          <h1 class="font-headline-lg text-2xl sm:text-3xl font-bold tracking-tight text-lumera-text-primary">Hospital &amp; Campus Operations</h1>
+          <p class="text-xs sm:text-sm text-lumera-text-secondary mt-0.5">Live inpatient bed census, facilities wayfinding, visiting guidelines &amp; hospital services</p>
+        </div>
+        <a href="tel:8005557863" class="px-3.5 py-2 rounded-lg bg-emerald-50 border border-emerald-200 text-lumera-spruce hover:bg-emerald-100 text-xs font-semibold transition-colors flex items-center gap-1.5 shadow-xs w-fit">
+          <span class="material-symbols-outlined text-sm" data-icon="call">call</span>
+          <span>Main Hospital Directory: (800) 555-SUMERU</span>
+        </a>
+      </div>
+
+      <!-- Live Bed Census & Inpatient Ward Capacity -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-5 sm:p-6 shadow-xs">
+        <div class="flex items-center justify-between pb-3.5 border-b border-lumera-border-subtle mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container" data-icon="hotel">hotel</span>
+            <h2 class="font-headline-lg text-lg font-bold text-lumera-text-primary">Live Hospital Capacity &amp; Bed Census</h2>
+          </div>
+          <span class="text-xs text-lumera-spruce font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span>Real-Time Sync Active</span>
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-5">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Total Hospital Beds</p>
+            <p class="text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">450</p>
+            <p class="text-xs text-lumera-text-secondary">Licensed Capacity</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Inpatient Occupancy</p>
+            <p class="text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">86.2%</p>
+            <p class="text-xs text-emerald-700 font-semibold">388 Beds Occupied</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">Cardiac ICU Available</p>
+            <p class="text-2xl font-bold text-emerald-800 mt-1 num-tabular">4 Beds</p>
+            <p class="text-xs text-emerald-700 font-semibold">Immediate Admission</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+            <p class="text-xs font-semibold text-lumera-text-muted">ER Triage Wait Time</p>
+            <p class="text-2xl font-bold text-lumera-text-primary mt-1 num-tabular">12 <span class="text-xs font-normal text-lumera-text-muted">mins</span></p>
+            <p class="text-xs text-emerald-700 font-semibold">Fast-Track Active</p>
+          </div>
+        </div>
+
+        <!-- Facilities & Wayfinding Information -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 pt-4 border-t border-lumera-border-subtle">
+          <div class="space-y-3">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider">Campus Facilities &amp; Services</h3>
+            <div class="space-y-2.5 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">Cardiovascular Outpatient Pavilion</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Metro Pavilion, 710 West Wing, Floor 4 (Take West Elevators from Plaza lobby).</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">Sumeru Campus Outpatient Pharmacy</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Ground Floor East Arcade • Open Mon-Sat 7:00 AM – 9:00 PM • Free mail delivery.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">Valet Parking &amp; Accessibility</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Main Plaza Entrance • $5 flat patient rate with clinic validation. Wheelchair transport available.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-xs font-label-clinical uppercase font-bold text-lumera-text-muted tracking-wider">Visiting Guidelines &amp; Quiet Hours</h3>
+            <div class="space-y-2.5 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">General Inpatient Wards</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Daily 8:00 AM – 8:00 PM (Up to 2 visitors at bedside simultaneously).</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">Intensive Cardiac Care (ICCU)</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">Daily 10:00 AM – 6:00 PM (Immediate family members only).</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50/70 border border-lumera-border-subtle">
+                <p class="font-bold text-lumera-text-primary">Healing Quiet Hours</p>
+                <p class="text-lumera-text-secondary text-xs mt-0.5">9:00 PM – 7:00 AM nightly to ensure restful patient recovery.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- INSTITUTIONAL CITIZEN FOOTER (NATURAL DOCUMENT FLOW, NEVER OVERLAYS CONTENT) -->
+<footer class="w-full bg-primary-container text-white py-6 sm:py-8 px-4 sm:px-6 md:px-12 flex-none border-t border-slate-800 mt-auto">
+  <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 text-xs">
+    <!-- Hospital Copyright & Accreditations -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left">
+      <span class="font-headline-lg text-base font-bold text-white tracking-tight">Sumeru Health Sciences</span>
+      <span class="text-slate-400 text-xs">© 2026 Sumeru Health Sciences &amp; Academic Medical Center. Dedicated to clinical excellence &amp; patient-first healing.</span>
+    </div>
+    <!-- Patient Rights & Support Navigation -->
+    <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-slate-300 font-medium text-xs">
+      <a class="hover:text-white transition-colors text-sky-300 font-semibold flex items-center gap-1" href="landing.html">
+        <span class="material-symbols-outlined text-xs" data-icon="home">home</span>
+        <span>Hospital Main Site</span>
+      </a>
+      <a class="hover:text-white transition-colors" href="tel:8005557863">24/7 Helpline: (800) 555-SUMERU</a>
+      <a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('HIPAA Notice of Privacy Practices loaded.')">Patient Rights &amp; Privacy (HIPAA)</a>
+      <a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('Financial Assistance Application policy loaded.')">Financial Assistance Policy</a>
+      <a class="hover:text-white transition-colors" href="javascript:void(0)" onclick="showToast('Language assistance available in 18 languages.')">Accessibility &amp; Translation Notice</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================== -->
+<!-- INTERACTIVE MODAL 1: SCHEDULE / RESCHEDULE APPOINTMENT         -->
+<!-- ============================================================== -->
+<div id="modal-appointment" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-appointment-title">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl border border-lumera-border-subtle overflow-hidden">
+    <div class="p-4 sm:p-5 border-b border-lumera-border-subtle flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="event">event</span>
+        <h3 id="modal-appointment-title" class="font-headline-lg text-base font-bold text-lumera-text-primary">Schedule Consultation or Follow-up</h3>
+      </div>
+      <button onclick="closeModal('modal-appointment')" class="w-8 h-8 rounded-lg hover:bg-slate-200 text-lumera-text-muted flex items-center justify-center" aria-label="Close modal">
+        <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+      </button>
+    </div>
+    <form onsubmit="handleAppointmentSubmit(event)" class="p-5 sm:p-6 space-y-3.5 text-xs">
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Select Specialty / Department</label>
+        <select class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover focus:ring-1 focus:ring-lumera-cyan-hover outline-none">
+          <option selected>Cardiovascular Medicine — Dr. Helena Vance, MD</option>
+          <option>General Internal Medicine — Dr. Marcus Webb, MD</option>
+          <option>Diagnostic Echocardiography Suite</option>
+          <option>Post-Surgical Cardiac Rehabilitation Clinic</option>
+        </select>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block font-semibold text-lumera-text-primary mb-1">Preferred Date</label>
+          <input type="date" value="2025-11-04" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none"/>
+        </div>
+        <div>
+          <label class="block font-semibold text-lumera-text-primary mb-1">Preferred Slot</label>
+          <select class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none">
+            <option>10:30 AM (Morning OPD)</option>
+            <option>02:00 PM (Afternoon Clinic)</option>
+            <option>04:30 PM (Evening Telehealth)</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Reason for Visit / Symptoms</label>
+        <textarea rows="3" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none" placeholder="Describe any current symptoms, questions for Dr. Vance, or check-in goals...">Post-CABG two-month recovery check-in and blood pressure review.</textarea>
+      </div>
+      <div class="pt-3 border-t border-lumera-border-subtle flex justify-end gap-2">
+        <button type="button" onclick="closeModal('modal-appointment')" class="px-4 py-2 rounded-xl border border-lumera-border-subtle hover:bg-slate-50 font-semibold text-lumera-text-secondary">Cancel</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-[#0369A1] text-white font-semibold shadow-xs">Confirm Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- INTERACTIVE MODAL 2: SEND SECURE MESSAGE TO CARE TEAM          -->
+<!-- ============================================================== -->
+<div id="modal-message" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-message-title">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl border border-lumera-border-subtle overflow-hidden">
+    <div class="p-4 sm:p-5 border-b border-lumera-border-subtle flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="forum">forum</span>
+        <h3 id="modal-message-title" class="font-headline-lg text-base font-bold text-lumera-text-primary">Send Secure Message to Dr. Helena Vance</h3>
+      </div>
+      <button onclick="closeModal('modal-message')" class="w-8 h-8 rounded-lg hover:bg-slate-200 text-lumera-text-muted flex items-center justify-center" aria-label="Close modal">
+        <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+      </button>
+    </div>
+    <form onsubmit="handleMessageSubmit(event)" class="p-5 sm:p-6 space-y-3.5 text-xs">
+      <div class="p-3 rounded-xl bg-sky-50/70 border border-sky-100 text-sky-900 text-xs flex items-center gap-2">
+        <span class="material-symbols-outlined text-sky-700" data-icon="lock">lock</span>
+        <span>HIPAA Encrypted Portal Communication. Expected response within 1 business day.</span>
+      </div>
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Subject</label>
+        <input type="text" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none" value="Question regarding morning blood pressure reading"/>
+      </div>
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Message</label>
+        <textarea rows="4" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none" placeholder="Type your message to Dr. Vance's clinical nursing team..."></textarea>
+      </div>
+      <div class="pt-3 border-t border-lumera-border-subtle flex justify-end gap-2">
+        <button type="button" onclick="closeModal('modal-message')" class="px-4 py-2 rounded-xl border border-lumera-border-subtle hover:bg-slate-50 font-semibold text-lumera-text-secondary">Cancel</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-[#0369A1] text-white font-semibold shadow-xs">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- INTERACTIVE MODAL 3: REFILL PRESCRIPTION                       -->
+<!-- ============================================================== -->
+<div id="modal-refill" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-refill-title">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl border border-lumera-border-subtle overflow-hidden">
+    <div class="p-4 sm:p-5 border-b border-lumera-border-subtle flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-lumera-spruce" data-icon="prescriptions">prescriptions</span>
+        <h3 id="modal-refill-title" class="font-headline-lg text-base font-bold text-lumera-text-primary">Request Prescription Refill</h3>
+      </div>
+      <button onclick="closeModal('modal-refill')" class="w-8 h-8 rounded-lg hover:bg-slate-200 text-lumera-text-muted flex items-center justify-center" aria-label="Close modal">
+        <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+      </button>
+    </div>
+    <form onsubmit="handleRefillSubmit(event)" class="p-5 sm:p-6 space-y-3.5 text-xs">
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Select Medication</label>
+        <select id="refill-med-select" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none">
+          <option selected>Metoprolol Succinate ER 50mg (3 refills remaining)</option>
+          <option>Atorvastatin Calcium 40mg (2 refills remaining)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Fulfillment Method</label>
+        <div class="grid grid-cols-2 gap-3 mt-1">
+          <label class="p-3 rounded-xl border border-lumera-cyan-hover bg-sky-50/50 flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="fulfillment" checked class="text-lumera-cyan-hover focus:ring-0"/>
+            <span class="font-medium text-lumera-text-primary">Free Home Delivery</span>
+          </label>
+          <label class="p-3 rounded-xl border border-lumera-border-subtle hover:bg-slate-50 flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="fulfillment" class="text-lumera-cyan-hover focus:ring-0"/>
+            <span class="font-medium text-lumera-text-primary">Campus Rx Pickup</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <label class="block font-semibold text-lumera-text-primary mb-1">Delivery Address</label>
+        <input type="text" readonly class="w-full px-3 py-2 rounded-xl border border-lumera-border-subtle bg-slate-100 text-lumera-text-secondary" value="482 Oakwood Terrace, Apt 5B, Metropolis"/>
+      </div>
+      <div class="pt-3 border-t border-lumera-border-subtle flex justify-end gap-2">
+        <button type="button" onclick="closeModal('modal-refill')" class="px-4 py-2 rounded-xl border border-lumera-border-subtle hover:bg-slate-50 font-semibold text-lumera-text-secondary">Cancel</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-lumera-spruce hover:bg-[#0D625C] text-white font-semibold shadow-xs">Submit Refill Order</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- TOAST NOTIFICATION CONTAINER                                   -->
+<!-- ============================================================== -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 bg-primary-container text-white text-xs px-4 py-3 rounded-xl shadow-lg border border-slate-700 flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+  <span class="material-symbols-outlined text-emerald-400 text-base" data-icon="check_circle">check_circle</span>
+  <span id="toast-message">Action completed successfully.</span>
+</div>
+
+<!-- JAVASCRIPT: 6 CORE SECTIONS NAVIGATION & MODALS -->
+<script>
+  const VALID_SURFACES = ['home', 'records', 'appointments', 'labs', 'billing', 'campus'];
+
+  // Surface switching logic with URL hash and history support
+  function switchSurface(surfaceId, updateHistory = true) {
+    if (!VALID_SURFACES.includes(surfaceId)) {
+      surfaceId = 'home';
+    }
+
+    // 1. Hide all panels
+    const panels = document.querySelectorAll('.surface-panel');
+    panels.forEach(p => p.classList.remove('active'));
+
+    // 2. Show targeted panel
+    const target = document.getElementById('surface-' + surfaceId);
+    if (target) {
+      target.classList.add('active');
+    }
+
+    // 3. Update desktop sidebar styles & aria attributes with crisp secondary typography
+    const desktopBtns = document.querySelectorAll('.sidebar-nav-btn');
+    desktopBtns.forEach(btn => {
+      const match = btn.getAttribute('data-tab') === surfaceId;
+      btn.setAttribute('aria-selected', match ? 'true' : 'false');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      const title = btn.querySelector('.nav-title');
+      const desc = btn.querySelector('.nav-desc');
+
+      if (match) {
+        btn.className = "sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl bg-lumera-surface-subtle text-lumera-text-primary border border-lumera-border-subtle transition-colors group text-left";
+        if (icon) {
+          icon.classList.add('text-lumera-cyan-hover', 'filled');
+          icon.classList.remove('text-lumera-text-muted');
+        }
+        if (title) {
+          title.className = "nav-title text-sm font-semibold text-lumera-text-primary leading-tight";
+        }
+        if (desc) {
+          desc.className = "nav-desc text-xs text-slate-700 font-medium leading-tight mt-0.5";
+        }
+      } else {
+        btn.className = "sidebar-nav-btn w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-lumera-text-secondary hover:bg-lumera-surface-subtle hover:text-lumera-text-primary transition-colors group text-left border border-transparent";
+        if (icon) {
+          icon.classList.remove('text-lumera-cyan-hover', 'filled');
+          icon.classList.add('text-lumera-text-muted');
+        }
+        if (title) {
+          title.className = "nav-title text-sm font-medium text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors leading-tight";
+        }
+        if (desc) {
+          desc.className = "nav-desc text-xs text-slate-600 group-hover:text-slate-800 leading-tight mt-0.5";
+        }
+      }
+    });
+
+    // 4. Update mobile navigation strip buttons
+    const mobileBtns = document.querySelectorAll('.mobile-nav-btn');
+    mobileBtns.forEach(btn => {
+      const match = btn.getAttribute('data-tab') === surfaceId;
+      if (match) {
+        btn.className = "mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-lumera-text-primary shadow-xs border border-lumera-border-subtle transition-all flex items-center gap-1.5";
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.add('text-lumera-cyan-hover', 'filled');
+        }
+      } else {
+        btn.className = "mobile-nav-btn px-3 py-1.5 rounded-lg text-xs font-medium text-lumera-text-secondary hover:bg-white hover:text-lumera-text-primary transition-all flex items-center gap-1.5 border border-transparent";
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.remove('text-lumera-cyan-hover', 'filled');
+        }
+      }
+    });
+
+    // 5. Update browser history / hash
+    if (updateHistory) {
+      if (history.pushState) {
+        history.pushState(null, null, '#' + surfaceId);
+      } else {
+        location.hash = '#' + surfaceId;
+      }
+    }
+
+    // 6. Smooth scroll to top of window
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Handle URL hash on initial page load & browser Back/Forward (popstate/hashchange)
+  function handleRoute() {
+    const hash = window.location.hash.replace('#', '').trim();
+    if (VALID_SURFACES.includes(hash)) {
+      switchSurface(hash, false);
+    } else {
+      switchSurface('home', false);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', handleRoute);
+  window.addEventListener('hashchange', handleRoute);
+  window.addEventListener('popstate', handleRoute);
+
+  // Modal handlers
+  function openAppointmentModal() {
+    document.getElementById('modal-appointment').classList.remove('hidden');
+  }
+  function openMessageModal() {
+    document.getElementById('modal-message').classList.remove('hidden');
+  }
+  function openRefillModal(medName) {
+    if (medName) {
+      const select = document.getElementById('refill-med-select');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(medName.split(' ')[0])) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+    document.getElementById('modal-refill').classList.remove('hidden');
+  }
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+  }
+
+  // Toast Notification
+  let toastTimer = null;
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    const msg = document.getElementById('toast-message');
+    msg.textContent = message;
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 3500);
+  }
+
+  // Form Submissions
+  function handleAppointmentSubmit(e) {
+    e.preventDefault();
+    closeModal('modal-appointment');
+    showToast('Consultation request submitted! Confirmation SMS sent to your phone.');
+  }
+  function handleMessageSubmit(e) {
+    e.preventDefault();
+    closeModal('modal-message');
+    showToast('Encrypted message delivered to Dr. Vance\'s clinical inbox.');
+  }
+  function handleRefillSubmit(e) {
+    e.preventDefault();
+    closeModal('modal-refill');
+    showToast('Prescription renewal transmitted to Sumeru Campus Rx.');
+  }
+
+  // Close modals on Escape key or outside click
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      ['modal-appointment', 'modal-message', 'modal-refill'].forEach(id => closeModal(id));
+    }
+  });
+  window.addEventListener('click', (e) => {
+    ['modal-appointment', 'modal-message', 'modal-refill'].forEach(id => {
+      const modal = document.getElementById(id);
+      if (e.target === modal) {
+        closeModal(id);
+      }
+    });
+  });
+
+  // Quick search filter interaction
+  const searchInput = document.getElementById('portal-quick-search');
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.toLowerCase().trim();
+        if (query.includes('bill') || query.includes('pay') || query.includes('claim') || query.includes('cost') || query.includes('deduct')) {
+          switchSurface('billing');
+          showToast(`Filtered billing records for: "${searchInput.value}"`);
+        } else if (query.includes('lab') || query.includes('test') || query.includes('potassium') || query.includes('troponin') || query.includes('vital')) {
+          switchSurface('labs');
+          showToast(`Filtered diagnostic tests for: "${searchInput.value}"`);
+        } else if (query.includes('record') || query.includes('allergy') || query.includes('history') || query.includes('vaccine') || query.includes('immun')) {
+          switchSurface('records');
+          showToast(`Filtered health records for: "${searchInput.value}"`);
+        } else if (query.includes('appoint') || query.includes('visit') || query.includes('schedule') || query.includes('doctor') || query.includes('vance')) {
+          switchSurface('appointments');
+          showToast(`Filtered appointments for: "${searchInput.value}"`);
+        } else if (query.includes('campus') || query.includes('map') || query.includes('bed') || query.includes('park') || query.includes('hour')) {
+          switchSurface('campus');
+          showToast(`Filtered campus wayfinding for: "${searchInput.value}"`);
+        } else {
+          switchSurface('home');
+          showToast(`Search results for: "${searchInput.value}"`);
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>

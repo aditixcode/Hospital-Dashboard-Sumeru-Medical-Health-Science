@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#F8FAFC]">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sumeru Health Sciences — Academic Medical Center &amp; Health System</title>
+  <meta name="description" content="Sumeru Health Sciences: Premier academic medical center integrating quaternary surgical expertise, clinical breakthrough research, and compassionate patient care."/>
+
+  <!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (UI Sans), Inter (Clinical Tabular) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+  <!-- Google Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS with Forms and Container Queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#F8FAFC",
+            "primary-container": "#0B1B3D",
+            "lumera-spruce": "#0F766E",
+            "lumera-cyan-hover": "#0284C7",
+            "lumera-cyan-dark": "#0369A1",
+            "lumera-border-subtle": "#E2E8F0",
+            "lumera-border-strong": "#CBD5E1",
+            "lumera-surface-card": "#FFFFFF",
+            "lumera-surface-subtle": "#F1F5F9",
+            "lumera-text-primary": "#0F172A",
+            "lumera-text-secondary": "#475569",
+            "lumera-text-muted": "#64748B",
+            "emergency-crimson": "#BE123C",
+            "status-normal-bg": "#F0FDF4",
+            "status-normal-border": "#86EFAC",
+            "status-normal-text": "#166534",
+            "status-info-bg": "#EFF6FF",
+            "status-info-border": "#93C5FD",
+            "status-info-text": "#1E40AF"
+          },
+          fontFamily: {
+            "headline-hero": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "title-panel": ["Plus Jakarta Sans", "sans-serif"],
+            "body-default": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-clinical": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+      width: 1em;
+      height: 1em;
+      max-width: 100%;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+    }
+    .num-tabular {
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-default text-lumera-text-primary antialiased bg-[#F8FAFC]">
+
+<!-- ============================================================== -->
+<!-- 1. TOP UTILITY BAR (CLEVELAND CLINIC / MAYO CLINIC PATTERN)    -->
+<!-- ============================================================== -->
+<div class="w-full bg-slate-900 text-slate-300 text-xs border-b border-slate-800">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-3">
+    <!-- Clinical Campus & Emergency Info -->
+    <div class="flex items-center gap-4 text-[11px] sm:text-xs">
+      <span class="inline-flex items-center gap-1.5 text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Main Medical District • 480 University Blvd</span>
+      </span>
+      <span class="hidden md:inline text-slate-600">|</span>
+      <span class="hidden md:inline-flex items-center gap-1 text-slate-300">
+        <span class="material-symbols-outlined text-xs text-sky-400" data-icon="local_hospital">local_hospital</span>
+        <span>Level 1 Acute Trauma &amp; Comprehensive Stroke Center</span>
+      </span>
+    </div>
+
+    <!-- Triage Phone & Patient Portal Direct Entry -->
+    <div class="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs ml-auto">
+      <a class="hover:text-white transition-colors flex items-center gap-1" href="tel:8005557863" title="Immediate Clinical Triage">
+        <span class="material-symbols-outlined text-xs text-emerald-400" data-icon="phone">phone</span>
+        <span>24/7 Nurse Triage: <strong>(800) 555-SUMERU</strong></span>
+      </a>
+      <span class="text-slate-700">|</span>
+      <!-- Direct Link to Working Patient Dashboard -->
+      <a href="index.html" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors shadow-xs" title="Open Authenticated Patient Dashboard">
+        <span class="material-symbols-outlined text-xs filled" data-icon="shield">shield</span>
+        <span>Patient Portal / MyChart</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- 2. GLOBAL INSTITUTIONAL HEADER                                 -->
+<!-- ============================================================== -->
+<header class="w-full border-b border-lumera-border-subtle bg-white sticky top-0 z-40 flex-none shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
+    <!-- Sumeru Brand Mark -->
+    <a href="landing.html" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-white shadow-xs transition-transform group-hover:scale-105">
+        <span class="material-symbols-outlined filled text-white text-2xl" data-icon="local_hospital">local_hospital</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-headline-lg text-xl font-bold tracking-tight text-primary-container leading-none">Sumeru Health Sciences</span>
+        <span class="text-xs font-medium text-lumera-text-secondary mt-0.5">Academic Medical Center &amp; Health System</span>
+      </div>
+    </a>
+
+    <!-- Desktop Global Navigation -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
+      <a href="#overview" class="hover:text-lumera-cyan-hover transition-colors">Overview</a>
+      <a href="#specialties" class="hover:text-lumera-cyan-hover transition-colors">Specialties &amp; Centers</a>
+      <a href="#doctors" class="hover:text-lumera-cyan-hover transition-colors">Clinical Faculty</a>
+      <a href="#facilities" class="hover:text-lumera-cyan-hover transition-colors">Campus &amp; Facilities</a>
+      <a href="#appointment" class="hover:text-lumera-cyan-hover transition-colors">Request Appointment</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Portal Link Button -->
+      <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-lumera-border-strong hover:bg-slate-50 text-xs font-semibold text-lumera-text-primary transition-colors">
+        <span class="material-symbols-outlined text-base text-lumera-cyan-hover" data-icon="badge">badge</span>
+        <span>MyChart Portal</span>
+      </a>
+
+      <!-- Primary Appointment CTA -->
+      <button onclick="openBookingModal()" class="px-4 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-base" data-icon="calendar_add_on">calendar_add_on</span>
+        <span>Book Visit</span>
+      </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-toggle" onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100" aria-label="Toggle navigation menu">
+        <span class="material-symbols-outlined text-2xl" data-icon="menu">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-nav-menu" class="hidden lg:hidden border-t border-lumera-border-subtle bg-white px-4 py-3 space-y-2 text-sm font-semibold text-slate-700 shadow-lg">
+    <a href="#overview" onclick="toggleMobileNav()" class="block py-2 px-3 rounded-lg hover:bg-slate-50">Overview</a>
+    <a href="#specialties" onclick="toggleMobileNav()" class="block py-2 px-3 rounded-lg hover:bg-slate-50">Specialties &amp; Centers</a>
+    <a href="#doctors" onclick="toggleMobileNav()" class="block py-2 px-3 rounded-lg hover:bg-slate-50">Clinical Faculty</a>
+    <a href="#facilities" onclick="toggleMobileNav()" class="block py-2 px-3 rounded-lg hover:bg-slate-50">Campus &amp; Facilities</a>
+    <a href="#appointment" onclick="toggleMobileNav()" class="block py-2 px-3 rounded-lg hover:bg-slate-50">Request Appointment</a>
+    <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+      <a href="index.html" class="w-full py-2 px-3 rounded-lg bg-slate-100 text-slate-800 text-center font-semibold text-xs flex items-center justify-center gap-1.5">
+        <span class="material-symbols-outlined text-sm" data-icon="badge">badge</span>
+        <span>Access Patient Dashboard</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================== -->
+<!-- 3. HOSPITAL HERO SECTION (MAYO / CLEVELAND CLINIC REPUTATION)  -->
+<!-- ============================================================== -->
+<section class="relative bg-gradient-to-r from-primary-container via-[#0E234D] to-[#132A5E] text-white pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <!-- Subtle Clinical Background Grid -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+
+  <div class="max-w-[1440px] mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      
+      <!-- Left Column: Editorial Hero & Conversion -->
+      <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+        <!-- Demonstration Context Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-sky-200 border border-white/15 backdrop-blur-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Academic Medical Center • Fictional Demonstration Prototype</span>
+        </div>
+
+        <!-- Hero Headline (Newsreader Serif) -->
+        <h1 class="font-headline-hero text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold tracking-tight text-white leading-[1.12]">
+          Where Clinical Breakthrough Meets Human Healing.
+        </h1>
+
+        <!-- Editorial Subtitle -->
+        <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl font-normal">
+          Sumeru Health Sciences unites multidisciplinary surgical institutes, quaternary clinical trials, and dedicated patient care. We treat complex conditions with precision, compassion, and academic rigor.
+        </p>
+
+        <!-- Primary Action Row -->
+        <div class="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+          <button onclick="openBookingModal()" class="px-5 py-3 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs sm:text-sm font-semibold transition-all shadow-md flex items-center gap-2">
+            <span class="material-symbols-outlined text-lg" data-icon="calendar_month">calendar_month</span>
+            <span>Request an Appointment</span>
+          </button>
+
+          <a href="#specialties" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-semibold transition-all backdrop-blur-xs flex items-center gap-2">
+            <span class="material-symbols-outlined text-lg" data-icon="clinical_notes">clinical_notes</span>
+            <span>Explore Specialties</span>
+          </a>
+
+          <a href="tel:911" class="px-4 py-3 rounded-xl bg-emergency-crimson hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-base filled" data-icon="emergency">emergency</span>
+            <span>Emergency: Call 911</span>
+          </a>
+        </div>
+
+        <!-- Quick Triage Indicator -->
+        <p class="text-xs text-slate-300 pt-1 flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm text-emerald-400" data-icon="check_circle">check_circle</span>
+          <span>Same-day or next-day consultations available for urgent clinical referrals.</span>
+        </p>
+      </div>
+
+      <!-- Right Column: Clinical Faculty Spotlight Card (Balances Hero Composition) -->
+      <div class="lg:col-span-5">
+        <div class="bg-white text-lumera-text-primary rounded-2xl p-5 sm:p-6 shadow-2xl border border-white/20 space-y-4">
+          <!-- Spotlight Badge & Status -->
+          <div class="flex items-center justify-between pb-3 border-b border-lumera-border-subtle">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Clinical Faculty Spotlight</span>
+            </div>
+            <span class="text-[11px] font-semibold text-lumera-spruce bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Active Consultations</span>
+          </div>
+
+          <!-- Doctor Feature Row with Local Portrait -->
+          <div class="flex items-center gap-3.5">
+            <img src="assets/images/dr-helena-vance.jpg" alt="Dr. Helena Vance, MD" class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl object-cover object-top border-2 border-slate-200 shadow-xs flex-shrink-0"/>
+            <div class="min-w-0">
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary leading-tight">Dr. Helena Vance, MD</h3>
+              <p class="text-xs font-semibold text-lumera-spruce mt-0.5">Chief of Cardiovascular Medicine</p>
+              <p class="text-[11px] text-slate-500 font-mono">MD, FACC, FSCAI • Sumeru Faculty</p>
+            </div>
+          </div>
+
+          <!-- Editorial Clinical Statement -->
+          <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-xl border border-lumera-border-subtle">
+            &ldquo;Our cardiovascular institute couples robotic revascularization with dedicated bedside telemetry, ensuring seamless continuity from surgical theatre through home recovery.&rdquo;
+          </p>
+
+          <!-- Quick Campus Metrics -->
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2 rounded-lg bg-sky-50/70 border border-sky-100">
+              <p class="font-bold text-sky-900 text-sm num-tabular">Suite 710</p>
+              <p class="text-[10px] text-sky-700 font-medium">Metro Pavilion</p>
+            </div>
+            <div class="p-2 rounded-lg bg-indigo-50/70 border border-indigo-100">
+              <p class="font-bold text-indigo-900 text-sm num-tabular">Thu &amp; Tue</p>
+              <p class="text-[10px] text-indigo-700 font-medium">Weekly Clinic</p>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-50/70 border border-emerald-100">
+              <p class="font-bold text-emerald-900 text-sm num-tabular">Open</p>
+              <p class="text-[10px] text-emerald-700 font-medium">Patient Intake</p>
+            </div>
+          </div>
+
+          <!-- Direct Hero Action Buttons -->
+          <div class="pt-1 flex items-center gap-2">
+            <button onclick="openBookingModal('Cardiovascular Medicine — Dr. Helena Vance, MD')" class="flex-1 py-2 px-3 rounded-xl bg-primary-container hover:bg-slate-800 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+              <span class="material-symbols-outlined text-sm" data-icon="calendar_add_on">calendar_add_on</span>
+              <span>Schedule with Dr. Vance</span>
+            </button>
+            <a href="index.html" class="px-3 py-2 rounded-xl border border-lumera-border-strong hover:bg-slate-50 text-xs font-semibold text-slate-700 transition-colors flex items-center gap-1" title="Access Authenticated Patient Portal">
+              <span class="material-symbols-outlined text-sm text-lumera-cyan-hover filled" data-icon="shield">shield</span>
+              <span class="hidden sm:inline">MyChart</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 4. HUB-AND-SPOKE RAPID ACCESS MATRIX (APOLLO PATTERN)          -->
+<!-- ============================================================== -->
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20">
+  <div class="bg-white rounded-2xl border border-lumera-border-subtle shadow-md p-4 sm:p-5">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
+      
+      <!-- Triage 1: Find a Specialist -->
+      <a href="#doctors" class="p-3 sm:p-4 rounded-xl border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-xs transition-all group flex flex-col items-start bg-slate-50/50 hover:bg-white">
+        <div class="w-9 h-9 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-xl" data-icon="person_search">person_search</span>
+        </div>
+        <h2 class="text-xs sm:text-sm font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Find a Specialist</h2>
+        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Browse 450+ academic faculty physicians.</p>
+      </a>
+
+      <!-- Triage 2: Book Appointment -->
+      <button onclick="openBookingModal()" class="p-3 sm:p-4 rounded-xl border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-xs transition-all group flex flex-col items-start text-left bg-slate-50/50 hover:bg-white">
+        <div class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-xl" data-icon="calendar_add_on">calendar_add_on</span>
+        </div>
+        <h2 class="text-xs sm:text-sm font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Book Consultation</h2>
+        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">In-person visits &amp; telehealth video.</p>
+      </button>
+
+      <!-- Triage 3: Clinical Centers -->
+      <a href="#specialties" class="p-3 sm:p-4 rounded-xl border border-lumera-border-subtle hover:border-lumera-cyan-hover hover:shadow-xs transition-all group flex flex-col items-start bg-slate-50/50 hover:bg-white">
+        <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-xl" data-icon="domain">domain</span>
+        </div>
+        <h2 class="text-xs sm:text-sm font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">Clinical Institutes</h2>
+        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Heart, Cancer, Neuro &amp; Surgical care.</p>
+      </a>
+
+      <!-- Triage 4: Patient Portal -->
+      <a href="index.html" class="p-3 sm:p-4 rounded-xl border border-sky-100 hover:border-lumera-cyan-hover hover:shadow-xs transition-all group flex flex-col items-start bg-sky-50/40 hover:bg-white">
+        <div class="w-9 h-9 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-xl filled" data-icon="badge">badge</span>
+        </div>
+        <h2 class="text-xs sm:text-sm font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">MyChart Portal</h2>
+        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Labs, prescription refills &amp; records.</p>
+      </a>
+
+      <!-- Triage 5: 24/7 Triage Line -->
+      <a href="tel:8005557863" class="col-span-2 md:col-span-1 p-3 sm:p-4 rounded-xl border border-emerald-200 hover:border-emerald-400 hover:shadow-xs transition-all group flex flex-col items-start bg-emerald-50/40 hover:bg-white">
+        <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-xl" data-icon="support_agent">support_agent</span>
+        </div>
+        <h2 class="text-xs sm:text-sm font-bold text-lumera-text-primary group-hover:text-emerald-800 transition-colors">Nurse Hotline</h2>
+        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">24/7 symptom triage: (800) 555-SUMERU.</p>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- 5. INSTITUTIONAL OVERVIEW & ACADEMIC MEDICINE FOUNDATION       -->
+<!-- ============================================================== -->
+<section id="overview" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-[1440px] mx-auto space-y-12">
+    
+    <!-- Section Heading -->
+    <div class="max-w-3xl space-y-2">
+      <p class="font-label-clinical text-xs uppercase font-bold text-lumera-cyan-hover tracking-wider">Academic Medical Center Mission</p>
+      <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-lumera-text-primary tracking-tight">
+        Groundbreaking Science, Compassionate Patient Care.
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        As the flagship academic medical center of Sumeru Health Sciences, our institution brings together clinical research, faculty professorships, and integrated hospital care to provide patients with definitive answers for complex medical diagnoses.
+      </p>
+    </div>
+
+    <!-- 4 Institutional Distinction Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      
+      <!-- Card 1 -->
+      <div class="p-5 rounded-2xl bg-white border border-lumera-border-subtle shadow-xs space-y-2.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-100 text-primary-container flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="science">science</span>
+        </div>
+        <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Translational Research</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Active clinical trial protocols in cardiovascular genetics, targeted immuno-oncology, and neuro-restoration funded by institutional research grants.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-5 rounded-2xl bg-white border border-lumera-border-subtle shadow-xs space-y-2.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-100 text-lumera-spruce flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="medical_services">medical_services</span>
+        </div>
+        <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Quaternary Surgical Care</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          State-of-the-art robotic suites, complex 3-vessel CABG, transcatheter aortic valve replacements, and multi-organ abdominal transplant teams.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-5 rounded-2xl bg-white border border-lumera-border-subtle shadow-xs space-y-2.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-100 text-sky-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="monitor_heart">monitor_heart</span>
+        </div>
+        <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Continuous Bedside Triage</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          High-acuity cardiac telemetry with real-time biometric vital streaming and 1:1 nurse-to-patient monitoring during critical surgical recovery.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="p-5 rounded-2xl bg-white border border-lumera-border-subtle shadow-xs space-y-2.5">
+        <div class="w-10 h-10 rounded-xl bg-slate-100 text-emerald-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="verified_user">verified_user</span>
+        </div>
+        <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Patient Rights &amp; Safety</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Full HIPAA compliance, rigorous surgical safety checklists, and transparent clinical notes available directly through our patient portal.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Transparent Educational Disclaimer -->
+    <div class="p-4 rounded-xl bg-slate-100/70 border border-lumera-border-subtle text-xs text-slate-600 flex items-start gap-3">
+      <span class="material-symbols-outlined text-slate-500 text-base mt-0.5" data-icon="info">info</span>
+      <div>
+        <strong class="text-slate-800">Educational Design Prototype Notice:</strong> Sumeru Health Sciences &amp; Academic Medical Center is an original fictional institutional framework designed for digital clinical UI/UX design exploration. All departmental descriptions, faculty profiles, and triage flows represent prototype demonstration content based on our authoritative <a href="DESIGN.md" class="underline font-semibold text-lumera-cyan-hover">DESIGN.md</a> specification.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 6. CLINICAL INSTITUTES & CENTERS OF EXCELLENCE (DESIGN.md 8.3) -->
+<!-- ============================================================== -->
+<section id="specialties" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/60 border-y border-lumera-border-subtle">
+  <div class="max-w-[1440px] mx-auto space-y-10">
+    
+    <!-- Header with Triage Context -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="max-w-2xl space-y-2">
+        <p class="font-label-clinical text-xs uppercase font-bold text-lumera-cyan-hover tracking-wider">Comprehensive Specialized Care</p>
+        <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-lumera-text-primary tracking-tight">
+          Clinical Institutes &amp; Centers of Excellence
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600">
+          Coordinated multidisciplinary specialty clinics offering diagnostic imaging, specialized surgeries, and longitudinal therapy.
+        </p>
+      </div>
+
+      <button onclick="openBookingModal()" class="px-4 py-2.5 rounded-xl bg-white border border-lumera-border-strong text-lumera-text-primary hover:bg-slate-50 text-xs font-semibold shadow-xs transition-colors flex items-center gap-1.5 self-start md:self-auto">
+        <span class="material-symbols-outlined text-sm text-lumera-cyan-hover" data-icon="search">search</span>
+        <span>Schedule Specialty Intake</span>
+      </button>
+    </div>
+
+    <!-- 6 Specialty Cards (Exactly Matching DESIGN.md 8.3) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Specialty 1: Cardiovascular & Thoracic Sciences -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 border border-sky-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="monitor_heart">monitor_heart</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Cardiovascular &amp; Thoracic Sciences
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Specialized treatment for complex coronary artery disease, transcatheter structural heart valve repair, cardiac electrophysiology, and postoperative bypass recovery.
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">Post-CABG Care • Structural Heart / TAVR • Heart Failure Management</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-semibold text-[11px]">
+            Next Available: Thursday
+          </span>
+          <button onclick="openBookingModal('Cardiovascular Medicine — Dr. Helena Vance, MD')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specialty 2: Comprehensive Oncology Institute -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-700 border border-rose-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="science">science</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Comprehensive Oncology Institute
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Multidisciplinary tumor boards, precision genomic profiling, targeted biologic infusion therapies, and advanced surgical oncology resections.
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">Solid Tumor Resection • Immunotherapy • Cellular Hematology</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 font-semibold text-[11px]">
+            Intake Protocol Active
+          </span>
+          <button onclick="openBookingModal('Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specialty 3: Neurological Sciences & Spine Surgery -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="psychology">psychology</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Neurological Sciences &amp; Spine
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Comprehensive stroke intervention, endovascular aneurysmal coiling, minimally invasive spinal reconstruction, and cranial microsurgery.
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">Acute Stroke Intervention • Spine Decompression • Epilepsy Triage</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-semibold text-[11px]">
+            24/7 Stroke Readiness
+          </span>
+          <button onclick="openBookingModal('Neurological Surgery — Dr. Aris Thorne, MD')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specialty 4: Orthopedics & Joint Reconstruction -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-700 border border-teal-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="accessibility_new">accessibility_new</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Orthopedics &amp; Sports Medicine
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Mako robotic-assisted joint replacement, sports trauma repair, complex fracture stabilization, and specialized outpatient physical rehabilitation.
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">Robotic Arthroplasty • Ligament Reconstruction • Spine Orthopedics</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-semibold text-[11px]">
+            Evaluations This Week
+          </span>
+          <button onclick="openBookingModal('Orthopedics & Sports Medicine Suite')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specialty 5: Digestive Health & Transplant Surgery -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="medication_liquid">medication_liquid</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Digestive Diseases &amp; Transplant
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Interventional endoscopy, complex hepatobiliary disease, inflammatory bowel disease management, and multivisceral abdominal transplant surgery.
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">Advanced Endoscopy • Hepatobiliary • Solid Organ Transplant</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 font-semibold text-[11px]">
+            Referral Coordination
+          </span>
+          <button onclick="openBookingModal('General Internal Medicine — Dr. Marcus Webb, MD')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Specialty 6: Advanced Women's & Children's Health -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs hover:border-lumera-cyan-hover hover:shadow-md transition-all flex flex-col justify-between group">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 border border-purple-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl" data-icon="pregnant_woman">pregnant_woman</span>
+          </div>
+          <div>
+            <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary group-hover:text-lumera-cyan-hover transition-colors">
+              Maternal &amp; Fetal Medicine
+            </h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              High-risk pregnancy consultation, perinatology ultrasound suites, private labor and delivery pavilions, and Level IV Neonatal Intensive Care (NICU).
+            </p>
+          </div>
+          <div class="pt-2">
+            <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Key Focus Areas:</p>
+            <p class="text-xs text-slate-700 font-medium mt-0.5">High-Risk Obstetrics • Level IV NICU • Minimally Invasive GYN</p>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t border-lumera-border-subtle flex items-center justify-between text-xs">
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-semibold text-[11px]">
+            Intake Available
+          </span>
+          <button onclick="openBookingModal('Post-Surgical Cardiac Rehabilitation Clinic')" class="font-semibold text-lumera-cyan-hover hover:underline flex items-center gap-1">
+            <span>Consult Specialists</span>
+            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 7. FEATURED CLINICAL FACULTY & PHYSICIANS                      -->
+<!-- ============================================================== -->
+<section id="doctors" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-[1440px] mx-auto space-y-10">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="max-w-2xl space-y-2">
+        <p class="font-label-clinical text-xs uppercase font-bold text-lumera-cyan-hover tracking-wider">Academic Medical Leadership</p>
+        <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-lumera-text-primary tracking-tight">
+          Distinguished Clinical Faculty &amp; Surgeons
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600">
+          Attending physicians, board-certified surgical specialists, and faculty educators dedicated to evidence-based outcomes.
+        </p>
+      </div>
+      <p class="text-xs text-slate-500">
+        Clinical profiles structured for academic prototype demonstration.
+      </p>
+    </div>
+
+    <!-- 4 Faculty Profile Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Doctor 1: Dr. Helena Vance (USES LOCAL ASSET!) -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div>
+          <div class="relative h-56 bg-slate-100 overflow-hidden">
+            <img src="assets/images/dr-helena-vance.jpg" alt="Dr. Helena Vance, MD" class="w-full h-full object-cover object-top"/>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-white text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+              Active Faculty
+            </span>
+          </div>
+          <div class="p-5 space-y-2">
+            <div>
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Dr. Helena Vance, MD</h3>
+              <p class="text-xs font-semibold text-lumera-spruce">Chief of Cardiovascular Medicine</p>
+              <p class="text-[11px] text-slate-500 font-mono mt-0.5">MD, FACC, FSCAI • Sumeru Faculty</p>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed pt-1">
+              Specializes in post-CABG surgical recovery, transcatheter structural heart interventions, and complex echocardiographic hemodynamics.
+            </p>
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1">
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="location_on">location_on</span>
+                <span>Metro Pavilion • Suite 710</span>
+              </p>
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="schedule">schedule</span>
+                <span>Clinics: Thursdays &amp; Tuesdays</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="openBookingModal('Cardiovascular Medicine — Dr. Helena Vance, MD')" class="w-full py-2 px-3 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="calendar_add_on">calendar_add_on</span>
+            <span>Book with Dr. Vance</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Doctor 2: Dr. Marcus Webb -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div>
+          <div class="h-56 bg-gradient-to-br from-primary-container to-slate-800 flex flex-col items-center justify-center text-white relative p-4 text-center">
+            <div class="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-bold font-headline-lg shadow-inner">
+              MW
+            </div>
+            <span class="text-xs font-medium text-slate-300 mt-2">Internal Medicine &amp; Diagnostics</span>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-white text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+              Active Faculty
+            </span>
+          </div>
+          <div class="p-5 space-y-2">
+            <div>
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Dr. Marcus Webb, MD</h3>
+              <p class="text-xs font-semibold text-lumera-spruce">Chair, Comprehensive Internal Medicine</p>
+              <p class="text-[11px] text-slate-500 font-mono mt-0.5">MD, FACP • Academic Clinical Director</p>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed pt-1">
+              Focuses on multisystem chronic disease evaluation, pre-operative surgical clearance, and complex diagnostic symptom triage.
+            </p>
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1">
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="location_on">location_on</span>
+                <span>West Wing Outpatient Clinic</span>
+              </p>
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="schedule">schedule</span>
+                <span>Clinics: Monday – Friday</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="openBookingModal('General Internal Medicine — Dr. Marcus Webb, MD')" class="w-full py-2 px-3 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="calendar_add_on">calendar_add_on</span>
+            <span>Book with Dr. Webb</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Doctor 3: Dr. Sarah Jenkins -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div>
+          <div class="h-56 bg-gradient-to-br from-[#0F766E] to-slate-800 flex flex-col items-center justify-center text-white relative p-4 text-center">
+            <div class="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-bold font-headline-lg shadow-inner">
+              SJ
+            </div>
+            <span class="text-xs font-medium text-slate-300 mt-2">Surgical Oncology &amp; Research</span>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-white text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+              Active Faculty
+            </span>
+          </div>
+          <div class="p-5 space-y-2">
+            <div>
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Dr. Sarah Jenkins, MD, PhD</h3>
+              <p class="text-xs font-semibold text-lumera-spruce">Director, Surgical Oncology Institute</p>
+              <p class="text-[11px] text-slate-500 font-mono mt-0.5">MD, PhD, FACS • NCI Trial Lead</p>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed pt-1">
+              Pioneers minimally invasive robotic tumor resections, regional intra-peritoneal chemotherapy, and molecular targeted therapy trials.
+            </p>
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1">
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="location_on">location_on</span>
+                <span>Cancer Center Pavilion • 3rd Floor</span>
+              </p>
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="schedule">schedule</span>
+                <span>Clinics: Consults by Referral</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="openBookingModal('Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD')" class="w-full py-2 px-3 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="calendar_add_on">calendar_add_on</span>
+            <span>Book with Dr. Jenkins</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Doctor 4: Dr. Aris Thorne -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+        <div>
+          <div class="h-56 bg-gradient-to-br from-[#1E3A8A] to-slate-900 flex flex-col items-center justify-center text-white relative p-4 text-center">
+            <div class="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-bold font-headline-lg shadow-inner">
+              AT
+            </div>
+            <span class="text-xs font-medium text-slate-300 mt-2">Cranial &amp; Spine Neurosurgery</span>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-emerald-600/90 text-white text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+              Active Faculty
+            </span>
+          </div>
+          <div class="p-5 space-y-2">
+            <div>
+              <h3 class="font-title-panel text-base font-bold text-lumera-text-primary">Dr. Aris Thorne, MD</h3>
+              <p class="text-xs font-semibold text-lumera-spruce">Chief of Neurological Surgery</p>
+              <p class="text-[11px] text-slate-500 font-mono mt-0.5">MD, FAANS • Neurovascular Specialist</p>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed pt-1">
+              Subspecializes in endovascular aneurysm treatment, stereotactic radiosurgery for brain tumors, and robotic-assisted spine stabilization.
+            </p>
+            <div class="pt-2 text-[11px] text-slate-600 space-y-1">
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="location_on">location_on</span>
+                <span>Neuroscience Pavilion • Suite 420</span>
+              </p>
+              <p class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-xs text-slate-400" data-icon="schedule">schedule</span>
+                <span>Clinics: Wednesdays &amp; On-Call</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <button onclick="openBookingModal('Neurological Surgery — Dr. Aris Thorne, MD')" class="w-full py-2 px-3 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+            <span class="material-symbols-outlined text-sm" data-icon="calendar_add_on">calendar_add_on</span>
+            <span>Book with Dr. Thorne</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 8. ADVANCED CLINICAL FACILITIES & CAMPUS WAYFINDING            -->
+<!-- ============================================================== -->
+<section id="facilities" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/60 border-y border-lumera-border-subtle">
+  <div class="max-w-[1440px] mx-auto space-y-12">
+    
+    <div class="max-w-2xl space-y-2">
+      <p class="font-label-clinical text-xs uppercase font-bold text-lumera-cyan-hover tracking-wider">Clinical Infrastructure</p>
+      <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-4xl font-bold text-lumera-text-primary tracking-tight">
+        Modern Facilities Engineered for Healing
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600">
+        Our medical center campus combines advanced surgical technology, fast diagnostic imaging, and calm recovery suites.
+      </p>
+    </div>
+
+    <!-- 3 Core Campus Facilities -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Facility 1: Surgical Suites -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="medical_services">medical_services</span>
+        </div>
+        <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary">Hybrid Robotic Operating Suites</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          16 sterile surgical suites equipped with intraoperative fluoroscopic imaging, da Vinci Xi multi-quadrant robotic arms, and laminar flow air purification systems.
+        </p>
+        <ul class="text-xs text-slate-700 space-y-1.5 pt-2 border-t border-lumera-border-subtle">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Intraoperative CT &amp; MRI Integration</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Low-dose fluoroscopic navigation</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Dedicated cardiothoracic bypass suites</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Facility 2: Diagnostic Imaging -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="science">science</span>
+        </div>
+        <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary">3T High-Field MRI &amp; Core Labs</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          On-site CAP and CLIA certified clinical pathology laboratories providing rapid same-day blood chemistry panels and high-resolution 3-Tesla neuro-imaging.
+        </p>
+        <ul class="text-xs text-slate-700 space-y-1.5 pt-2 border-t border-lumera-border-subtle">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Certified CAP/CLIA Core Laboratory</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Same-day cardiac biomarker turnaround</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Wide-bore MRI for patient comfort</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Facility 3: Inpatient Recovery -->
+      <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl" data-icon="bed">bed</span>
+        </div>
+        <h3 class="font-title-panel text-lg font-bold text-lumera-text-primary">Private Inpatient Healing Rooms</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          All-private inpatient suites with acoustic dampening, natural daylight architecture, integrated family sleep couches, and wireless telemetry vitals monitoring.
+        </p>
+        <ul class="text-xs text-slate-700 space-y-1.5 pt-2 border-t border-lumera-border-subtle">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>100% private patient suites</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Circadian rhythm healing lighting</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-xs text-emerald-600" data-icon="check">check</span>
+            <span>Room-service clinical nutrition</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Campus Visiting & Hours Box -->
+    <div class="bg-white rounded-2xl border border-lumera-border-subtle p-6 shadow-xs">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h4 class="font-bold text-sm text-lumera-text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-lumera-cyan-hover" data-icon="schedule">schedule</span>
+            <span>Visiting Hours</span>
+          </h4>
+          <p class="text-xs text-slate-600 mt-1">General Inpatient Units: <strong>8:00 AM – 8:00 PM</strong> daily.</p>
+          <p class="text-xs text-slate-600">Intensive Cardiac Care (ICCU): <strong>10:00 AM – 6:00 PM</strong>.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-lumera-text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-lumera-cyan-hover" data-icon="local_parking">local_parking</span>
+            <span>Campus Parking &amp; Transit</span>
+          </h4>
+          <p class="text-xs text-slate-600 mt-1">Parking Garages A &amp; B connected via enclosed skywalk.</p>
+          <p class="text-xs text-slate-600">Complimentary valet at Main Entrance for surgery patients.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-lumera-text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-lumera-cyan-hover" data-icon="location_on">location_on</span>
+            <span>Medical Center Address</span>
+          </h4>
+          <p class="text-xs text-slate-600 mt-1">Metro Pavilion, 480 University Blvd, Metropolis.</p>
+          <p class="text-xs text-slate-600">Transit: Metro Blue Line • University Medical Station.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 9. APPOINTMENT CALL TO ACTION & INTAKE PROTOCOL                -->
+<!-- ============================================================== -->
+<section id="appointment" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-container to-[#132A5E] text-white">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left Column: Guidance & Direct Phone -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/10 text-xs font-semibold text-sky-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Online Scheduling &amp; Intake</span>
+        </div>
+        <h2 class="font-headline-hero text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
+          Consult With Sumeru Clinical Specialists.
+        </h2>
+        <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+          Whether you need a comprehensive cardiovascular assessment, second surgical opinion, or general consultation, our patient coordinators will connect you with the appropriate specialty team.
+        </p>
+
+        <!-- Direct Phone & Help -->
+        <div class="pt-4 space-y-3">
+          <div class="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-xl" data-icon="phone_in_talk">phone_in_talk</span>
+            </div>
+            <div>
+              <p class="text-xs text-slate-300">Direct Patient Scheduling Hotline</p>
+              <p class="text-base font-bold text-white num-tabular font-mono">(800) 555-SUMERU</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white/10 border border-white/15 backdrop-blur-xs flex items-center justify-between gap-3">
+            <div>
+              <p class="text-xs font-semibold text-white">Already an established patient?</p>
+              <p class="text-xs text-slate-300 mt-0.5">Access your records, lab panels &amp; direct physician messaging.</p>
+            </div>
+            <a href="index.html" class="px-3.5 py-2 rounded-lg bg-white text-primary-container text-xs font-bold hover:bg-slate-100 transition-colors flex-shrink-0">
+              Open Portal
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Scheduling Prototype Form -->
+      <div class="lg:col-span-7 bg-white text-lumera-text-primary rounded-2xl border border-lumera-border-subtle p-6 sm:p-8 shadow-xl">
+        <div class="pb-4 border-b border-lumera-border-subtle mb-5">
+          <h3 class="font-headline-lg text-lg sm:text-xl font-bold text-primary-container">Request a Clinical Consultation</h3>
+          <p class="text-xs text-slate-600 mt-0.5">Complete this prototype request form. A patient access coordinator will confirm your appointment.</p>
+        </div>
+
+        <form id="public-booking-form" onsubmit="handlePublicBooking(event)" class="space-y-4 text-xs">
+          <div>
+            <label for="booking-specialty" class="block font-semibold text-lumera-text-primary mb-1">Select Specialty or Clinical Service <span class="text-red-500">*</span></label>
+            <select id="booking-specialty" required class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover focus:ring-1 focus:ring-lumera-cyan-hover outline-none text-xs">
+              <option value="Cardiovascular Medicine — Dr. Helena Vance, MD" selected>Cardiovascular Medicine — Dr. Helena Vance, MD</option>
+              <option value="General Internal Medicine — Dr. Marcus Webb, MD">General Internal Medicine — Dr. Marcus Webb, MD</option>
+              <option value="Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD">Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD</option>
+              <option value="Neurological Surgery — Dr. Aris Thorne, MD">Neurological Surgery — Dr. Aris Thorne, MD</option>
+              <option value="Orthopedics &amp; Sports Medicine Suite">Orthopedics &amp; Sports Medicine Suite</option>
+              <option value="Post-Surgical Cardiac Rehabilitation Clinic">Post-Surgical Cardiac Rehabilitation Clinic</option>
+              <option value="Diagnostic Echocardiography &amp; Imaging">Diagnostic Echocardiography &amp; Imaging</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="booking-date" class="block font-semibold text-lumera-text-primary mb-1">Preferred Date <span class="text-red-500">*</span></label>
+              <input type="date" id="booking-date" required value="2025-11-04" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs"/>
+            </div>
+            <div>
+              <label for="booking-slot" class="block font-semibold text-lumera-text-primary mb-1">Preferred Time Window <span class="text-red-500">*</span></label>
+              <select id="booking-slot" required class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs">
+                <option value="Morning Clinic (09:00 AM – 12:00 PM)">Morning Clinic (09:00 AM – 12:00 PM)</option>
+                <option value="Afternoon Clinic (01:00 PM – 04:30 PM)">Afternoon Clinic (01:00 PM – 04:30 PM)</option>
+                <option value="Telehealth Video Slot (04:30 PM – 06:00 PM)">Telehealth Video Slot (04:30 PM – 06:00 PM)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="booking-patient-name" class="block font-semibold text-lumera-text-primary mb-1">Patient Full Legal Name <span class="text-red-500">*</span></label>
+              <input type="text" id="booking-patient-name" required placeholder="e.g. Wei Chen" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs"/>
+            </div>
+            <div>
+              <label for="booking-phone" class="block font-semibold text-lumera-text-primary mb-1">Contact Phone Number <span class="text-red-500">*</span></label>
+              <input type="tel" id="booking-phone" required placeholder="+1 (555) 000-0000" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs font-mono"/>
+            </div>
+          </div>
+
+          <div>
+            <label for="booking-reason" class="block font-semibold text-lumera-text-primary mb-1">Reason for Consultation or Medical History</label>
+            <textarea id="booking-reason" rows="3" placeholder="Briefly describe your symptoms, diagnosis, or reason for scheduling..." class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs">Post-CABG follow-up consultation and echocardiogram review.</textarea>
+          </div>
+
+          <div class="pt-3 border-t border-lumera-border-subtle flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span class="text-[11px] text-slate-500">
+              Confidential clinical intake • Prototype submission
+            </span>
+            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white font-semibold shadow-xs transition-colors text-xs flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+              <span>Submit Appointment Request</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- 10. INSTITUTIONAL FOOTER (COMPREHENSIVE GOVERNANCE & PRIVACY)  -->
+<!-- ============================================================== -->
+<footer class="w-full bg-slate-950 text-white pt-12 pb-8 px-4 sm:px-6 md:px-12 border-t border-slate-800">
+  <div class="max-w-[1440px] mx-auto space-y-10 text-xs">
+    
+    <!-- Top Row: Hospital Brand & Main Directories -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      
+      <!-- Col 1: Brand & Academic Statement -->
+      <div class="md:col-span-2 space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-white border border-slate-700">
+            <span class="material-symbols-outlined filled text-white text-xl" data-icon="local_hospital">local_hospital</span>
+          </div>
+          <div>
+            <span class="font-headline-lg text-lg font-bold text-white tracking-tight">Sumeru Health Sciences</span>
+            <p class="text-[11px] text-slate-400">Academic Medical Center &amp; Health System</p>
+          </div>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+          Integrating academic clinical research, surgical expertise, and patient-first care. Serving patients across the region with high-acuity institutes and outpatient centers.
+        </p>
+        <div class="pt-2 text-slate-300 space-y-1">
+          <p><strong>Campus Address:</strong> Metro Pavilion, 480 University Blvd, Metropolis</p>
+          <p><strong>General Operator:</strong> (800) 555-SUMERU</p>
+        </div>
+      </div>
+
+      <!-- Col 2: Clinical Institutes -->
+      <div class="space-y-2.5">
+        <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Clinical Institutes</h4>
+        <ul class="space-y-1.5 text-slate-400">
+          <li><a href="#specialties" class="hover:text-white transition-colors">Cardiovascular Medicine</a></li>
+          <li><a href="#specialties" class="hover:text-white transition-colors">Comprehensive Oncology</a></li>
+          <li><a href="#specialties" class="hover:text-white transition-colors">Neurology &amp; Neurosurgery</a></li>
+          <li><a href="#specialties" class="hover:text-white transition-colors">Orthopedics &amp; Sports</a></li>
+          <li><a href="#specialties" class="hover:text-white transition-colors">Digestive Diseases</a></li>
+          <li><a href="#specialties" class="hover:text-white transition-colors">Women’s Health &amp; NICU</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Patients & Visitors -->
+      <div class="space-y-2.5">
+        <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Patients &amp; Visitors</h4>
+        <ul class="space-y-1.5 text-slate-400">
+          <li><a href="index.html" class="hover:text-white transition-colors font-semibold text-sky-400">MyChart Patient Portal</a></li>
+          <li><a href="#appointment" class="hover:text-white transition-colors">Request Consultation</a></li>
+          <li><a href="#facilities" class="hover:text-white transition-colors">Campus Maps &amp; Parking</a></li>
+          <li><a href="#facilities" class="hover:text-white transition-colors">Visiting Guidelines</a></li>
+          <li><a href="javascript:void(0)" onclick="showToast('Financial Assistance policy loaded.')" class="hover:text-white transition-colors">Financial Assistance Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="showToast('HIPAA Notice of Privacy Practices loaded.')" class="hover:text-white transition-colors">Patient Rights &amp; Privacy (HIPAA)</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Rapid Portals -->
+      <div class="space-y-2.5">
+        <h4 class="font-bold text-slate-200 uppercase tracking-wider text-[11px]">Quick Access</h4>
+        <div class="space-y-2">
+          <a href="index.html" class="block p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors">
+            <span class="text-xs font-bold text-white flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-sky-400 filled" data-icon="shield">shield</span>
+              <span>Patient Dashboard</span>
+            </span>
+            <p class="text-[10px] text-slate-400 mt-0.5">View test results &amp; prescriptions</p>
+          </a>
+
+          <a href="tel:8005557863" class="block p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors">
+            <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm" data-icon="phone_in_talk">phone_in_talk</span>
+              <span>(800) 555-SUMERU</span>
+            </span>
+            <p class="text-[10px] text-slate-400 mt-0.5">24/7 Clinical Nurse Triage</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Disclaimer & Accreditations -->
+    <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-slate-500 text-[11px]">
+      <div>
+        <p>© 2026 Sumeru Health Sciences &amp; Academic Medical Center. Dedicated to clinical excellence &amp; patient-first healing.</p>
+        <p class="mt-0.5 text-slate-400">Demonstration Project: Sumeru Health Sciences is an educational UI/UX design prototype. Clinical metrics and personnel are fictional.</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-4 text-slate-400">
+        <a href="tel:911" class="text-rose-400 font-bold hover:underline">Emergency: Call 911</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="showToast('Translation assistance available in 18 languages.')" class="hover:text-white">Language Assistance (18 Languages)</a>
+        <span>•</span>
+        <a href="javascript:void(0)" onclick="showToast('HIPAA Privacy Practices verified.')" class="hover:text-white">HIPAA Notice</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ============================================================== -->
+<!-- 11. INTERACTIVE APPOINTMENT MODAL (PROTOTYPE WIZARD)           -->
+<!-- ============================================================== -->
+<div id="modal-public-booking" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-booking-title">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-lumera-border-subtle overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div class="p-4 sm:p-5 border-b border-lumera-border-subtle flex items-center justify-between bg-slate-50">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-lumera-cyan-hover" data-icon="calendar_month">calendar_month</span>
+        <h3 id="modal-booking-title" class="font-headline-lg text-base font-bold text-lumera-text-primary">Request a Specialty Consultation</h3>
+      </div>
+      <button onclick="closeBookingModal()" class="w-8 h-8 rounded-lg hover:bg-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center transition-colors" aria-label="Close modal">
+        <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+      </button>
+    </div>
+
+    <form onsubmit="handleModalBooking(event)" class="p-5 sm:p-6 space-y-3.5 text-xs">
+      <div>
+        <label for="modal-booking-specialty" class="block font-semibold text-lumera-text-primary mb-1">Department / Specialist <span class="text-red-500">*</span></label>
+        <select id="modal-booking-specialty" required class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs">
+          <option value="Cardiovascular Medicine — Dr. Helena Vance, MD">Cardiovascular Medicine — Dr. Helena Vance, MD</option>
+          <option value="General Internal Medicine — Dr. Marcus Webb, MD">General Internal Medicine — Dr. Marcus Webb, MD</option>
+          <option value="Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD">Center for Surgical Oncology — Dr. Sarah Jenkins, MD, PhD</option>
+          <option value="Neurological Surgery — Dr. Aris Thorne, MD">Neurological Surgery — Dr. Aris Thorne, MD</option>
+          <option value="Orthopedics &amp; Sports Medicine Suite">Orthopedics &amp; Sports Medicine Suite</option>
+          <option value="Post-Surgical Cardiac Rehabilitation Clinic">Post-Surgical Cardiac Rehabilitation Clinic</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="modal-booking-date" class="block font-semibold text-lumera-text-primary mb-1">Preferred Date <span class="text-red-500">*</span></label>
+          <input type="date" id="modal-booking-date" required value="2025-11-04" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs"/>
+        </div>
+        <div>
+          <label for="modal-booking-slot" class="block font-semibold text-lumera-text-primary mb-1">Preferred Slot <span class="text-red-500">*</span></label>
+          <select id="modal-booking-slot" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs">
+            <option>10:30 AM (Morning OPD)</option>
+            <option>02:00 PM (Afternoon Clinic)</option>
+            <option>04:30 PM (Evening Telehealth)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="modal-booking-name" class="block font-semibold text-lumera-text-primary mb-1">Patient Full Name <span class="text-red-500">*</span></label>
+        <input type="text" id="modal-booking-name" required placeholder="e.g. Wei Chen" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs"/>
+      </div>
+
+      <div>
+        <label for="modal-booking-phone" class="block font-semibold text-lumera-text-primary mb-1">Phone Number <span class="text-red-500">*</span></label>
+        <input type="tel" id="modal-booking-phone" required placeholder="+1 (555) 349-8812" class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs font-mono"/>
+      </div>
+
+      <div>
+        <label for="modal-booking-notes" class="block font-semibold text-lumera-text-primary mb-1">Symptoms or Referral Reason</label>
+        <textarea id="modal-booking-notes" rows="2" placeholder="Briefly describe your current condition..." class="w-full px-3 py-2 rounded-xl border border-lumera-border-strong bg-white text-lumera-text-primary focus:border-lumera-cyan-hover outline-none text-xs">Cardiac follow-up consultation and diagnostic review.</textarea>
+      </div>
+
+      <div class="pt-3 border-t border-lumera-border-subtle flex justify-end gap-2">
+        <button type="button" onclick="closeBookingModal()" class="px-4 py-2 rounded-xl border border-lumera-border-subtle hover:bg-slate-50 font-semibold text-slate-600 transition-colors">Cancel</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white font-semibold shadow-xs transition-colors">Confirm Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- 11B. CLINICAL APPOINTMENT CONFIRMATION RECEIPT MODAL            -->
+<!-- ============================================================== -->
+<div id="modal-confirmation" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="confirmation-modal-title">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-lumera-border-subtle overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div class="p-5 bg-gradient-to-r from-primary-container to-[#132A5E] text-white flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-400/30 flex items-center justify-center">
+          <span class="material-symbols-outlined text-xl" data-icon="check_circle">check_circle</span>
+        </div>
+        <div>
+          <h3 id="confirmation-modal-title" class="font-headline-lg text-base font-bold text-white">Consultation Request Confirmed</h3>
+          <p class="text-[11px] text-sky-200">Sumeru Academic Medical Center Patient Access</p>
+        </div>
+      </div>
+      <button onclick="closeConfirmationModal()" class="w-8 h-8 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors" aria-label="Close confirmation modal">
+        <span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+      </button>
+    </div>
+
+    <div class="p-6 space-y-4 text-xs">
+      <!-- Reference Banner -->
+      <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-lumera-border-subtle">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Triage Intake Reference</span>
+          <p id="confirm-ref-id" class="font-mono text-sm font-bold text-primary-container">#SMC-2026-8812</p>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-semibold flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Pending Coordinator Review</span>
+        </span>
+      </div>
+
+      <!-- Request Breakdown -->
+      <div class="space-y-2 border border-lumera-border-subtle rounded-xl p-3.5 bg-white">
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span class="text-slate-500">Patient Full Name:</span>
+          <span id="confirm-patient-name" class="font-semibold text-slate-800 text-right">Wei Chen</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span class="text-slate-500">Clinical Specialty:</span>
+          <span id="confirm-specialty" class="font-semibold text-slate-800 text-right max-w-[260px] truncate">Cardiovascular Medicine</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span class="text-slate-500">Requested Schedule:</span>
+          <span id="confirm-date-slot" class="font-semibold text-slate-800 text-right">Nov 4, 2025 • Morning Clinic</span>
+        </div>
+        <div class="flex justify-between py-1">
+          <span class="text-slate-500">Contact Telephone:</span>
+          <span id="confirm-phone" class="font-mono font-semibold text-slate-800 text-right">+1 (555) 349-8812</span>
+        </div>
+      </div>
+
+      <!-- Next Steps Callout -->
+      <div class="p-3.5 rounded-xl bg-sky-50/70 border border-sky-100 text-slate-700 space-y-1">
+        <p class="font-bold text-sky-950 flex items-center gap-1.5 text-xs">
+          <span class="material-symbols-outlined text-sm text-sky-600" data-icon="info">info</span>
+          <span>Next Steps for Your Visit</span>
+        </p>
+        <p class="text-[11px] leading-relaxed text-slate-600">
+          A patient access coordinator will call you within 2 business hours to verify insurance or clinical records. For acute emergencies, call 911 immediately.
+        </p>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+        <a href="index.html" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-primary-container hover:bg-slate-800 text-white font-semibold text-center transition-colors flex items-center justify-center gap-1.5 shadow-xs">
+          <span class="material-symbols-outlined text-sm filled" data-icon="shield">shield</span>
+          <span>Open Patient Dashboard</span>
+        </a>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button type="button" onclick="window.print()" class="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl border border-lumera-border-strong hover:bg-slate-50 font-semibold text-slate-700 transition-colors">
+            Print
+          </button>
+          <button type="button" onclick="closeConfirmationModal()" class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-lumera-cyan-hover hover:bg-lumera-cyan-dark text-white font-semibold transition-colors">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- 12. TOAST NOTIFICATION CONTAINER                               -->
+<!-- ============================================================== -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 bg-primary-container text-white text-xs px-4 py-3 rounded-xl shadow-lg border border-slate-700 flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+  <span class="material-symbols-outlined text-emerald-400 text-base" data-icon="check_circle">check_circle</span>
+  <span id="toast-message">Action completed successfully.</span>
+</div>
+
+<!-- ============================================================== -->
+<!-- 13. JAVASCRIPT PROTOTYPE CONTROLS                              -->
+<!-- ============================================================== -->
+<script>
+  // Mobile Nav Toggle
+  function toggleMobileNav() {
+    const menu = document.getElementById('mobile-nav-menu');
+    menu.classList.toggle('hidden');
+  }
+
+  // Booking Modal Handlers
+  function openBookingModal(specialtyPref) {
+    const modal = document.getElementById('modal-public-booking');
+    if (specialtyPref) {
+      const select = document.getElementById('modal-booking-specialty');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value.includes(specialtyPref.split('—')[0].trim()) || select.options[i].text.includes(specialtyPref)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+    modal.classList.remove('hidden');
+  }
+
+  function closeBookingModal() {
+    const modal = document.getElementById('modal-public-booking');
+    modal.classList.add('hidden');
+  }
+
+  // Confirmation Modal Handlers
+  function openConfirmationModal(name, specialty, date, slot, phone) {
+    document.getElementById('confirm-ref-id').textContent = '#SMC-2026-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('confirm-patient-name').textContent = name || 'Patient';
+    document.getElementById('confirm-specialty').textContent = specialty ? specialty.split('—')[0].trim() : 'Specialty Consultation';
+    document.getElementById('confirm-date-slot').textContent = (date || 'Selected Date') + ' • ' + (slot || 'Standard Clinic');
+    document.getElementById('confirm-phone').textContent = phone || 'On Record';
+    
+    const confirmModal = document.getElementById('modal-confirmation');
+    confirmModal.classList.remove('hidden');
+  }
+
+  function closeConfirmationModal() {
+    const confirmModal = document.getElementById('modal-confirmation');
+    confirmModal.classList.add('hidden');
+  }
+
+  // Toast Notification
+  let toastTimer = null;
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    const msg = document.getElementById('toast-message');
+    msg.textContent = message;
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+    
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 4000);
+  }
+
+  // Modal Form Submit
+  function handleModalBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('modal-booking-name').value;
+    const specialty = document.getElementById('modal-booking-specialty').value;
+    const date = document.getElementById('modal-booking-date').value;
+    const slot = document.getElementById('modal-booking-slot').value;
+    const phone = document.getElementById('modal-booking-phone').value;
+    
+    closeBookingModal();
+    openConfirmationModal(name, specialty, date, slot, phone);
+    showToast(`Consultation request received for ${name}. Confirmation SMS sent.`);
+  }
+
+  // On-Page Form Submit
+  function handlePublicBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('booking-patient-name').value;
+    const specialty = document.getElementById('booking-specialty').value;
+    const date = document.getElementById('booking-date').value;
+    const slot = document.getElementById('booking-slot').value;
+    const phone = document.getElementById('booking-phone').value;
+    
+    openConfirmationModal(name, specialty, date, slot, phone);
+    showToast(`Appointment inquiry submitted for ${name}. Clinical coordinator will call you.`);
+    document.getElementById('public-booking-form').reset();
+  }
+
+  // Close modal on Escape key or outside click
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeBookingModal();
+      closeConfirmationModal();
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    const bookingModal = document.getElementById('modal-public-booking');
+    const confirmModal = document.getElementById('modal-confirmation');
+    if (e.target === bookingModal) {
+      closeBookingModal();
+    }
+    if (e.target === confirmModal) {
+      closeConfirmationModal();
+    }
+  });
+</script>
+</body>
+</html>

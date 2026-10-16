@@ -1,0 +1,12 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and scratch files
+*.log
+scratch/
+.system_generated/
+
+# Dependency directories (if used)
+node_modules/
